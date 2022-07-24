@@ -30,8 +30,8 @@
 #include <memory>
 #include <cstdint>
 
-#include <Qt/qstring.h>
-#include <Qt/qcolor.h>
+#include <QtCore/qstring.h>
+#include <QtGui/qcolor.h>
 #include <xercesc/dom/DOM.hpp>
 
 //#include "common/khTypes.h"

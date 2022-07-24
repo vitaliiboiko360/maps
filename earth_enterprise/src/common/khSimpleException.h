@@ -24,7 +24,7 @@
 #include <errno.h>
 // for khstrerror
 #include <notify.h>
-#include <Qt/qbytearray.h>
+#include <QtCore/qbytearray.h>
 
 // ****************************************************************************
 // ***  khSimpleException

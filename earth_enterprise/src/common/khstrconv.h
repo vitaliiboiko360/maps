@@ -55,7 +55,7 @@ template <class T>
 void
 FromQString(const QString &str, T &val)
 {
-  FromString((const char *)str.utf8(), val);
+  FromString((const char *)str.toUtf8(), val);
 }
 
 inline

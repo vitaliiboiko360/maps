@@ -38,7 +38,8 @@
 
 #include <stdlib.h>
 #include <string>
-#include <qdatetime.h>
+#include <QtCore/qelapsedtimer.h>
+#include <QtCore/qstring.h>
 #include <deque>
 #include "khTypes.h"
 #include <cstdint>
@@ -115,7 +116,7 @@ class khProgressMeter
 
 
   std::int64_t countUntilNextCheck;
-  QTime timer;
+  QElapsedTimer timer;
   bool finalized;
   const std::string progress_meter_prefix_;
 

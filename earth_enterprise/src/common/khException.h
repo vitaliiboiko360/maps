@@ -21,8 +21,8 @@
 #include <stdexcept>
 #include <errno.h>
 #include <cstring>
-#include <Qt/qstring.h>
-#include <Qt/qobject.h>
+#include <QtCore/qstring.h>
+#include <QtCore/qobject.h>
 
 // for khstrerror
 #include <notify.h>
@@ -34,11 +34,11 @@ inline QString tr(const char *srcText, const char *comment = 0) {
 
 inline QString trUtf8(const char * sourceText, const char * disambiguation = 0, int n = -1)
 {
-    return QObject::trUtf8(sourceText, disambiguation, n);
+    return QObject::tr(sourceText, disambiguation, n);
 }
 
 inline QString no_tr(const char *srcText) {
-  return QString::fromAscii(srcText);
+  return QString::fromLatin1(srcText);
 }
 };
 

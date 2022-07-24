@@ -102,7 +102,7 @@ inline
 QString
 XMLStr2QString(const XMLCh *xmlch)
 {
-  return QString::fromUcs2((const ushort*)xmlch);
+  return QString::fromLocal8Bit((const char*)xmlch);
 }
 
 // ----------------------------------------------------------------------
