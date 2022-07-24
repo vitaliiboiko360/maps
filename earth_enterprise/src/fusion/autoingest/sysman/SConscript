@@ -53,7 +53,7 @@ env.Depends('../plugins/ProjectedMapProjectAsset.os', 'plugins/MapLayerAssetD.h'
 
 env.Command('SysManFromStorage.cpp',
             [ '../FromStorageGen.pl' ],
-            [ "$SOURCE --daemon --cppfile $TARGET " + string.join(plugins, ' ') ])
+            [ "$SOURCE --daemon --cppfile $TARGET " + " ".join(plugins) ])
 
 env.Command('khAssetManagerDispatch.cpp',
             [ '../ProtocolGen.pl', '../AssetManager.protocol' ],
@@ -98,7 +98,7 @@ otherDirObjs = [
     'fusion/gemaptilegen/.idl/Config',
     ]
 
-pluginFiles = map(lambda p: 'plugins/'+p+'AssetD.cpp', plugins)
+pluginFiles = list(map(lambda p: 'plugins/'+p+'AssetD.cpp', plugins))
 sysmanFiles = ['AssetD.cpp', 'AssetVersionD.cpp',
   'AssetOperation.cpp', 'StateUpdater.cpp', 'DependentStateTree.cpp',
   'WaitingAssets.cpp', 'khSystemManager.cpp',
@@ -112,7 +112,7 @@ extraObjs = [TaskStorageObj, JobStorageObj, NextTaskIdObj, TaskRuleObj,
   FusionUniqueIdObj] + \
   commonobj + \
   env.ObjFromOtherDir(otherDirObjs)
-sysmanObjs = map(lambda f: str(f).replace(".cpp", ".o"), sysmanFiles)
+sysmanObjs = list(map(lambda f: str(f).replace(".cpp", ".o"), sysmanFiles))
 sysmanLibs = ['gegdal', 'geraster', 'gesearchtabs', 'genet', 'gepublish', 'gefconfigutil',
   'geindex_r', 'geutil', 'gecommon', 'gexml', 'gemiscconfig', 'QtCore', 'QtGui', 'xerces-c', 'geos',
   'gomp']

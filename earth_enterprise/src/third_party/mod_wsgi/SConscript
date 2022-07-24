@@ -17,7 +17,7 @@
 
 Import('third_party_env')
 
-mod_wsgi_version='mod_wsgi-4.5.14'
+mod_wsgi_version='mod_wsgi-4.9.0'
 mod_wsgi_ge_version = mod_wsgi_version.replace('mod_wsgi', 'mod_wsgi-ge')
 
 num_cpu = GetOption('num_jobs')

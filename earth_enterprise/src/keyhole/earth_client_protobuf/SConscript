@@ -30,7 +30,7 @@ for i in proto_files:
 
 # Compile the cc files and add them to the "proto.a" lib.
 objects = map(lambda f: env.StaticObject(f), proto_inputs)
-geprotos = env.staticLib('geprotos', objects)
+geprotos = env.staticLib('geprotos', list(objects))
 
 for gen_pb_file in proto_inputs:
   # scons seems to have issues resolving dependencies of dependencies when 

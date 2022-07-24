@@ -17,7 +17,7 @@
 
 
 Import('third_party_env')
-ogdi_version = 'ogdi-3.1.6'
+ogdi_version = 'ogdi-4.1.0'
 
 ogdi_patches = ['ogdi-errmsg.patch', 'ogdi-make.patch']
 
@@ -46,18 +46,19 @@ ogdi_extract = ogdi_env.Command(
             current_dir, current_dir, ogdi_source, ogdi_target))])
 
 # [2] Patch ogdi
-ogdi_target = '%s/.patch' % current_dir
-ogdi_patch = ogdi_env.Command(
-    ogdi_target,
-    ogdi_extract + map(ogdi_env.GetBuildPath, ogdi_patches),
-    [ogdi_env.MultiCommand(
-        'cd %s\n'
-        '%s\n'
-        'touch %s' % (build_root,
-                      '\n'.join(map(
-                          lambda i: 'patch -g0 -p1 -b --suffix .topdir -s < %s' % (
-                              ogdi_env.GetBuildPath(i)), ogdi_patches)),
-                      ogdi_target))])
+# ogdi_target = '%s/.patch' % current_dir
+# ogdi_patch = ogdi_env.Command(
+#     ogdi_target,
+#     ogdi_extract + map(ogdi_env.GetBuildPath, ogdi_patches),
+#     [ogdi_env.MultiCommand(
+#         'cd %s\n'
+#         '%s\n'
+#         'touch %s' % (build_root,
+#                       '\n'.join(map(
+#                           lambda i: 'patch -g0 -p1 -b --suffix .topdir -s < %s' % (
+#                               ogdi_env.GetBuildPath(i)), ogdi_patches)),
+#                       ogdi_target))])
+ogdi_patch = ''
 
 if third_party_env['is_min_ubuntu'] and not third_party_env['native_cc']:
   env_opt = ''
@@ -74,7 +75,7 @@ else:
 # [3] Configure ogdi
 ogdi_target = '%s/.configure' % current_dir
 ogdi_configure = ogdi_env.Command(
-    ogdi_target, ogdi_patch,
+    ogdi_target, [ogdi_extract],
     [ogdi_env.MultiCommand(
         'cd %s\n'
         '%s%s ./configure --prefix=/opt/google '

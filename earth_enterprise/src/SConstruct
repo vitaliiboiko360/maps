@@ -28,7 +28,7 @@ import sys
 sys.path += ['scons']
 from khEnvironment import khEnvironment
 import getversion
-import commands
+import subprocess
 
 # Add the OpenGEE Python libraries to the module search path:
 opengee_lib_path = os.path.join('lib', 'python')
@@ -45,7 +45,7 @@ crosstool_path = '/usr/local/crosstool'
 
 # make our umask less severe while building files
 try:
-  umask = os.umask(022)
+  umask = os.umask(0o022)
 except OSError:
   pass
 
@@ -98,7 +98,7 @@ ValidOptions = set(
 
 for argkey in ARGUMENTS:
   if argkey not in ValidOptions:
-    print "Unrecognized option: '" + argkey + "'"
+    print("Unrecognized option: '" + argkey + "'")
     Exit(1)
 
 # process commandline arguments
@@ -143,7 +143,7 @@ optdir = '/opt/google'
 # The exception is when the user defines native_cc=1 on the commandline
 compatibility_dir = '%s/lib64/compatibility' % optdir
 if not native_cc and not os.path.isdir(compatibility_dir):
-  print "ERROR: %s doesn't exist.\nPlease run %s/../rpms/build_scripts/update_ghardy.sh" % (compatibility_dir, top_dir)
+  print(f"ERROR: {compatibility_dir} doesn't exist.\nPlease run {top_dir}/../rpms/build_scripts/update_ghardy.sh")
   Exit(1)
 
 
@@ -194,21 +194,21 @@ else:
     el_ver = 'el7'
 
 if bundle_3rd_libs:
-  python_version = '2.7.5'
-  python_major_version = '2.7'
-  python_bin = os.path.join(exportdirs['bin'], 'python')
+  python_version = '3.8.10'
+  python_major_version = '3.8'
+  python_bin = os.path.join(exportdirs['bin'], 'python3')
   python_include = os.path.join(exportdirs['root'], 'include/python%s' % python_major_version)
   python_home = '/usr'
 else:
   if el_ver == 'el6':
-    python_version = '2.7.1' # scl version for el6
-    python_major_version = '2.7' # scl major version for el6
-    python_bin = '/usr/bin/python2.7' # scl bin
+    python_version = '3.8.10' # scl version for el6
+    python_major_version = '3.8' # scl major version for el6
+    python_bin = '/usr/bin/python' # scl bin
     python_include = '/usr/include/python%s' % python_major_version # scl include path
     python_home = '/usr' # scl home
   else:
-    python_version = sys.version[:5] # '2.7.6'
-    python_major_version = sys.version[:3] # '2.7'
+    python_version = '3.8.10' # sys.version[:5] # '2.7.6'
+    python_major_version = '3.8' # sys.version[:3] # '2.7'
     python_bin = '/usr/bin/python'
     python_include = '/usr/include/python%s' % python_major_version
     python_home = '/usr'
@@ -220,15 +220,15 @@ is_min_ubuntu = True
 # using lsb_release, subprocess and re is more readable than awk parsing also
 if not os.path.isfile('/etc/redhat-release'):
   vstring=subprocess.check_output('lsb_release -r',shell=True)
-  arr=re.split('[\t\.\n]',vstring)
+  arr=re.split('[\t\.\n]',vstring.decode('utf-8'))
   major=int(arr[1])
   minor=int(arr[2])
   el_ver = ''
   if major < 16:
-    print 'Unknown Ubuntu version, minimum required version is 16.04.'
+    print('Unknown Ubuntu version, minimum required version is 16.04.')
     Exit(1)
 else:
-    print "OS is not Ubuntu"
+    print("OS is not Ubuntu")
 
 extragccflags = []
 if sys.platform[0:5] == 'linux':
@@ -284,7 +284,7 @@ else:
 # warning so we can continue to build on ancient operating systems.
 warnflags += ['-Wno-error=cpp']
 
-gpp_ver = commands.getstatusoutput('g++ -v')
+gpp_ver = subprocess.getstatusoutput('g++ -v')
 gpp_maj = int(gpp_ver[1][gpp_ver[1].find('gcc version') + 12])
 
 # TODO: remove this and fix all places where we see these warnings.
@@ -383,7 +383,7 @@ if not native_cc:
       optflags += ['--sysroot=%s' % grte_top]
       linkflags += ['--sysroot=%s' % grte_top]
     else:
-      print ErrorUnsupportedCrossToolVer
+      print(ErrorUnsupportedCrossToolVer)
       Exit(1)
 
     cross_cc_lib = '%s/%s/lib64' % (cross_cc_base, cross_cc_target)
@@ -399,13 +399,13 @@ rpathlink_flags = map(lambda dir_name: '-Wl,-rpath-link,'+dir_name,
 rpath_flags = map(lambda dir_name: '-Wl,-rpath,' + dir_name, rpath_dirs)
 test_rpath_flags = map(
   lambda dir_name: '-Wl,-rpath,' + dir_name, test_rpath_dirs)
-test_linkflags = linkflags + rpathlink_flags + test_rpath_flags
-linkflags = linkflags + rpathlink_flags + rpath_flags
+test_linkflags = linkflags + list(rpathlink_flags) + list(test_rpath_flags)
+linkflags = linkflags + list(rpathlink_flags) + list(rpath_flags)
 
 # Enforce that installdir=BLAH is specified when 'install'
 # is supplied as a target
 if (not installdir) and ('install' in COMMAND_LINE_TARGETS):
-  print 'installdir=... must be specified with install target'
+  print('installdir=... must be specified with install target')
   Exit(1)
 
 installdir = Dir(installdir)
@@ -498,7 +498,7 @@ installdirs = {
 # Check version of git -- may not be able to reliably generate correct opengee version string.
 gee_version_number = getversion.open_gee_version.get_short()
 if getversion.open_gee_version.get_warning_message():
-    print getversion.open_gee_version.get_warning_message()
+    print(getversion.open_gee_version.get_warning_message())
 
 # create the environment that controls the builds
 if is_min_ubuntu:
@@ -584,9 +584,9 @@ if not opengee.version.is_version_ge(version, [4, 8]):
           '/opt/rh/devtoolset-2/root/usr/lib']
     else:
         if version == None:
-            print "Unable to determine GCC version, minimum required is 4.8"
+            print("Unable to determine GCC version, minimum required is 4.8")
         else:
-            print ("GCC version " + '.'.join(version) +
+            print("GCC version " + '.'.join(version) +
                    " detected. Minimum required version is 4.8")
             Exit(1)
 

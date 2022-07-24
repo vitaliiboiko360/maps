@@ -60,7 +60,6 @@ if third_party_env['bundle_3rd_libs']:
       'psycopg2',
       'setuptools',
       'mgrs',
-      'PIL',
       'skia',
       'pyyaml',
       'defusedxml',

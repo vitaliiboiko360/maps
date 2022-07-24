@@ -19,7 +19,7 @@ import sys
 
 Import('third_party_env')
 
-mgrs_version='mgrs-1.1.0'
+mgrs_version='mgrs-1.4.3'
 mgrs_ge_version = mgrs_version.replace('mgrs', 'mgrs-ge')
 
 current_dir = Dir('.').abspath

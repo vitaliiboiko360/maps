@@ -18,7 +18,7 @@
 
 Import('third_party_env')
 
-postgresql_version = 'postgresql-9.6.15'
+postgresql_version = 'postgresql-12.10'
 postgresql_source = File('#/../../earth_enterprise/third_party/postgresql/%s.tar.bz2'
                          % postgresql_version).abspath
 
@@ -63,7 +63,7 @@ postgresql_configure = postgresql_env.Command(
          'export LD_LIBRARY_PATH={build_lib_dir_escaped}\n'
          '{env_opt} ./configure --prefix=/opt/google --mandir=/opt/google/share/man '
             '--disable-rpath --enable-thread-safety --with-openssl --with-python '
-            '--without-perl --without-readline --without-pam --without-krb5 {config_opt}\n'
+            '--without-perl --without-readline --without-pam {config_opt}\n'
          'touch {postgresql_target_escaped}'
         ).format(
             build_root_escaped = postgresql_env.bash_escape(build_root),

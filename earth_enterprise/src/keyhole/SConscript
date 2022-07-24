@@ -30,7 +30,7 @@ cpps = [
 ]
 
 objects = map(lambda f: env.StaticObject(f), cpps)
-keyholeutils = env.staticLib('keyholeutils', objects)
+keyholeutils = env.staticLib('keyholeutils', list(objects))
 
 # Build subprojects
 SConscript('earth_client_protobuf/SConscript', exports='env')

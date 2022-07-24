@@ -17,7 +17,7 @@
 
 import sys
 import os
-import commands         # TODO: This has been deprecated since 2.6 (?)
+import subprocess        # TODO: This has been deprecated since 2.6 (?)
 
 env = Environment()
 
@@ -47,15 +47,15 @@ def copyFiles(dest_dir, src_dir):
     dest_dir = dest_dir.rstrip(os.sep)
     src_dir = src_dir.rstrip(os.sep)
     # Ensure the destination directory exists at each step
-    commands.getstatusoutput("mkdir -p " + dest_dir)
-    commands.getstatusoutput("cp -R " + src_dir + os.sep 
+    subprocess.getstatusoutput("mkdir -p " + dest_dir)
+    subprocess.getstatusoutput("cp -R " + src_dir + os.sep 
                              + "*" + " " + dest_dir)
 
 # Clean install dir (note: the current sconscripts leave stuff behind, like
 # directories).
 if env.GetOption('clean'):
     # clean the search and getomcat install folders.
-    commands.getstatusoutput("rm -rf " + tutorials_dir)
+    subprocess.getstatusoutput("rm -rf " + tutorials_dir)
 else:
     copyFiles(root_dir, tutorial_src_dir)
 

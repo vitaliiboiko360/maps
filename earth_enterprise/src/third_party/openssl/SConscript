@@ -19,7 +19,7 @@
 Import('third_party_env')
 import os
 
-openssl_version = 'openssl-1.0.2h'
+openssl_version = 'openssl-1.1.1f'
 ge_version = openssl_version.replace('openssl', 'openssl-ge')
 
 current_dir = Dir('.').abspath
@@ -55,7 +55,6 @@ openssl_configure = openssl_env.Command(
     openssl_target, openssl_extract,
     [openssl_env.MultiCommand(
         'cd %s\n'
-        'perl util/perlpath.pl /usr/bin/perl\n'
         '%s%s ./Configure -DSSL_ALLOW_ADH --prefix=/opt/google '
         '--openssldir=/var/opt/google/openssl linux-x86_64 shared\n'
         'touch %s' % (build_root, openssl_env['ENV']['mod_env'], env_opt,
@@ -78,8 +77,11 @@ openssl_target = '%s/.install' % current_dir
 openssl_install = openssl_env.Command(
     openssl_target, openssl_build,
     [openssl_env.MultiCommand(
+        'echo !!!!! build_root=%s\n'
         'cd %s\n'
-        'make INSTALL_PREFIX=%s install_sw\n'
+        'echo !!!!! install_root=%s\n'
+        'make DESTDIR=%s install_sw\n'
+        'echo !!!!! install_root_opt=%s\n'
         'cd %s\n'
         'if [ -d ./lib64 ]; then rsync -rltpvu ./lib64/ ./lib; rm -rf ./lib64; fi\n'
         'rm -rf lib/pkgconfig\n'
@@ -88,10 +90,11 @@ openssl_install = openssl_env.Command(
         'rm -rf lib/engines\n'
         'rm -rf share/doc/packages/%s\n'
         'mkdir -p share/doc/packages/%s\n'
+        'echo test2222222\n'
         'cd -\n'
-        'cp -pr CHANGES CHANGES.SSLeay LICENSE NEWS README '
+        'cp -pr CHANGES LICENSE NEWS README '
         '%s/opt/google/share/doc/packages/%s\n'
-        'touch %s' % (build_root, install_root, install_root_opt, ge_version,
+        'touch %s' % (build_root, build_root, install_root, install_root, install_root_opt, install_root_opt, ge_version,
                       ge_version, install_root, ge_version, openssl_target))])
 
 

@@ -18,7 +18,7 @@
 
 Import('third_party_env')
 
-Imaging_version='Imaging-1.1.7'
+Imaging_version='Pillow-9.1.0'
 Imaging_ge_version = Imaging_version.replace('Imaging', 'Imaging-ge')
 
 current_dir = Dir('.').abspath
@@ -77,7 +77,6 @@ Imaging_install = Imaging_env.Command(
         'mkdir -p %s' % install_root_doc,
         'rsync -pvr build/lib.linux-x86_64-%s/ %s' % (
             Imaging_env['python_major_version'], install_root_lib),
-        'cp -pr README CHANGES %s' % install_root_doc,
         'touch %s' % Imaging_target]))])
 
 # [4] Install these into various directories as required for build.

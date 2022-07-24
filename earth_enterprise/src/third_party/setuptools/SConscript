@@ -20,7 +20,7 @@ import sys
 
 Import('third_party_env')
 
-setuptools_version='setuptools-0.6c11'
+setuptools_version='setuptools-61.3.1'
 setuptools_ge_version = setuptools_version.replace('setuptools', 'setuptools-ge')
 
 current_dir = Dir('.').abspath

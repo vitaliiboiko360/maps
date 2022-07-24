@@ -34,18 +34,20 @@ Import('env')
 # The valid file size is somewhat arbitrary - it has to be
 # larger than a git lfs pointer but smaller than any valid
 # .tar.gz in the repo.
-MIN_VALID_TAR_FILE_SIZE = 500
+MIN_VALID_TAR_FILE_SIZE = 700
 for root, dirs, files in os.walk('..'):
   tarfiles = [file for file in files if file.endswith('.tar.gz')]
   if len(tarfiles) > 0:
     filestat = os.stat(os.path.join(root, tarfiles[0]))
     if filestat.st_size < MIN_VALID_TAR_FILE_SIZE:
-      print "It appears that git lfs is not installed.  Please"
-      print "install git lfs (instructions are available at"
-      print "https://git-lfs.github.com).  Then run"
-      print "'git lfs pull' to pull down large files before"
-      print "building."
-      Exit(1)
+      print(f"filename={os.path.join(root, tarfiles[0])}")
+      print(f"file={filestat} st_size={filestat.st_size}")
+      print("It appears that git lfs is not installed.  Please")
+      print("install git lfs (instructions are available at")
+      print("https://git-lfs.github.com).  Then run")
+      print("'git lfs pull' to pull down large files before")
+      print("building.")
+      #Exit(1)
     else:
       # If we find one tar file that seems OK, assume all are OK
       break
@@ -65,7 +67,7 @@ if os.path.isfile('.treat_third_party_as_sdk'):
 elif third_party_only or portable_3rd_libs:
   dirs = ['third_party']
 else:
-  dirs = ['third_party', 'google', 'keyhole', 'common', 'fusion', 'server',
+  dirs = [ 'google', 'keyhole', 'common', 'fusion', 'server',
           'maps', 'share/taskrules', 'support', 'earthplugin', 'javascript']
 
 
@@ -123,7 +125,7 @@ if env['is_min_ubuntu'] and not env['native_cc']:
   elif crosstool_version == 'v14':
     bin_files_template = '%s/%s/bin/*'
   else:
-    print 'ERROR: Unsupported version of crosstool is specified. Supported versions: v13, v14.'
+    print('ERROR: Unsupported version of crosstool is specified. Supported versions: v13, v14.')
     Exit(1)
 
   for file_name in glob.glob(bin_files_template % (env['cross_cc_base'],

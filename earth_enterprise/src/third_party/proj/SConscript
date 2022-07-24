@@ -18,7 +18,7 @@
 
 Import('third_party_env')
 
-proj_version = 'proj-4.7.0'
+proj_version = 'proj-8.2.1'
 datum_grid_patch = 'proj-datumgrid-1.5.zip'
 
 ge_version = proj_version.replace('proj', 'proj-ge')
@@ -42,19 +42,19 @@ proj_extract = proj_env.Command(
             current_dir, current_dir, source, proj_target))])
 
 # [2] Patch
-proj_target = '%s/.patch' % current_dir
-proj_patch = proj_env.Command(
-    proj_target, [proj_extract, proj_env.GetBuildPath(datum_grid_patch)],
-    [proj_env.MultiCommand(
-        'cd %s/nad\n'
-        'unzip -u %s\n'
-        'touch %s' % (
-            build_root, proj_env.GetBuildPath(datum_grid_patch), proj_target))])
+# proj_target = '%s/.patch' % current_dir
+# proj_patch = proj_env.Command(
+#     proj_target, [proj_extract, proj_env.GetBuildPath(datum_grid_patch)],
+#     [proj_env.MultiCommand(
+#         'cd %s/nad\n'
+#         'unzip -u %s\n'
+#         'touch %s' % (
+#             build_root, proj_env.GetBuildPath(datum_grid_patch), proj_target))])
 
 # [ ] Configure
 proj_target = '%s/.configure' % current_dir
 proj_configure = proj_env.Command(
-    proj_target, proj_patch,
+    proj_target, [proj_extract],
     [proj_env.MultiCommand(
         'cd %s\n'
         '%s ./configure --prefix=/opt/google\n'

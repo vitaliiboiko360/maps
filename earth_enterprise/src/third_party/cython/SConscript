@@ -17,7 +17,7 @@
 
 Import('third_party_env')
 
-cython_version='Cython-0.20.2'
+cython_version='Cython-0.29.14'
 
 current_dir = Dir('.').abspath
 build_root = '%s/%s' % (current_dir, cython_version)
@@ -54,9 +54,10 @@ cython_target = '%s/.build' % current_dir
 cython_build = cython_env.Command(
     cython_target, cython_extract,
     [cython_env.MultiCommand(
+        'echo python_bin=%s\n'
         'cd %s\n'
         '%s%s %s setup.py build\n'
-        'touch %s' % (build_root, cython_env['ENV']['mod_env'],
+        'touch %s' % (third_party_env['python_bin'], build_root, cython_env['ENV']['mod_env'],
                       env_opt, python_cmd, cython_target))])
 
 # [3] Install cython.

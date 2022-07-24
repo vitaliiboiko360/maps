@@ -18,8 +18,8 @@
 
 Import('third_party_env')
 
-python_version = 'Python-2.7.5'
-python_major_version = 'python2.7'
+python_version = 'Python-3.8.10'
+python_major_version = 'python3.8'
 # need to do "sudo apt-get build-dep python2.7" for getting all dependencies
 
 make_cmd_cpu = 'make -j%d' % GetOption('num_jobs')
@@ -87,8 +87,9 @@ python_configure = python_env.Command(
             python_target))])
 
 # [4] Build python
+# -L/wdir/earthenterprise/earth_enterprise/src/NATIVE-REL-x86_64/lib -I/wdir/earthenterprise/earth_enterprise/src/NATIVE-REL-x86_64/include
 if third_party_env['is_min_ubuntu'] and not third_party_env['native_cc']:
-  ld = '%s -shared' % python_env['ENV']['CXX']
+  ld = '%s -L/wdir/earthenterprise/earth_enterprise/src/NATIVE-REL-x86_64/lib -I/wdir/earthenterprise/earth_enterprise/src/NATIVE-REL-x86_64/include -shared' % python_env['ENV']['CXX']
 else:
   ld = '%s -shared' % python_env['ENV']['CXX']
 make_cmd = '%s LD_SHARED="%s"' % (make_cmd_cpu, ld)
@@ -112,7 +113,7 @@ python_install = python_env.Command(
         'cd %s\n'
         '%s %s install DESTDIR=%s\n'
         'mkdir -p %s\n'
-        'cp -pr LICENSE README %s\n'
+        'cp -pr LICENSE README.rst %s\n'
         'touch %s' % (
             build_root,
             python_env['ENV']['mod_env'], make_cmd, install_root,

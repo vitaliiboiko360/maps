@@ -20,6 +20,6 @@ Import('env', 'sysmanObjs', 'extraObjs', 'testLibs')
 env = env.Clone()
 
 env.test('parse-raster-project-xml-no-content_unittest',
-    map(lambda o: "../" + o, sysmanObjs) + extraObjs + \
+    list(map(lambda o: "../" + o, sysmanObjs)) + extraObjs + \
     ['parse-raster-project-xml-no-content_unittest.cc'],
     LIBS = [ 'dbmanifest', 'geautoingest', 'yaml-cpp' ] + testLibs)

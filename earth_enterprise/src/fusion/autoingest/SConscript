@@ -154,7 +154,7 @@ for plugin in plugins:
 
 env.Command('ReadOnlyFromStorage.cpp',
             [ 'FromStorageGen.pl' ],
-            [ "$SOURCE --cppfile $TARGET " + string.join(plugins, ' ') ])
+            [ "$SOURCE --cppfile $TARGET " + " ".join(plugins) ])
 
 env.Command('khAssetManagerProxy.h',
             [ 'ProtocolGen.pl', 'AssetManager.protocol' ],
@@ -177,8 +177,8 @@ commoncpp = [
     'geAssetRoot.cpp', 'SearchTabReferenceImpl.cpp',
     'JsonUtils.cpp', 'JsUtils.cpp'
     ] + \
-    map(lambda n: '.idl/'+n+'.cpp', idlfiles) + \
-    map(lambda p: 'plugins/'+p+'Asset.cpp', plugins)
+    list(map(lambda n: '.idl/'+n+'.cpp', idlfiles)) + \
+    list(map(lambda p: 'plugins/'+p+'Asset.cpp', plugins))
 
 commonh = map(lambda n: '.idl/'+n+'.h', idlfiles)
 
@@ -186,7 +186,7 @@ for idlfile in idlfiles:
     osfile = idlfile + '.os'
     env.Depends(osfile, commonh)
 
-commonobj = map(lambda src: env.SharedObject(src), commoncpp)
+commonobj = list(map(lambda src: env.SharedObject(src), commoncpp))
 
 for obj in commonobj:
     env.Depends(obj, commonh)

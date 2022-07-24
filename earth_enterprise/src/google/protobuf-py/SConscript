@@ -20,7 +20,7 @@
 import os.path
 Import('env')
 
-protobuf_version='protobuf-2.4.1'
+protobuf_version='protobuf-3.20.0'
 protobuf_ge_version = protobuf_version.replace('protobuf', 'protobuf-ge')
 
 protobuf_source = Dir('#/../../earth_enterprise/src/google/protobuf-py').abspath

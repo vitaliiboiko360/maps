@@ -23,7 +23,7 @@ env.Append( CXXFLAGS = ['-Wno-unused-function', '-Wno-unused-value', '-DQT3_SUPP
 
 hmocfiles = [ 'application.h' ]
 qtcpps = env.qtFiles([], hmocfiles, [], '')
-qtobjs = map(lambda f: env.StaticObject(f), qtcpps)
+qtobjs = list(map(lambda f: env.StaticObject(f), qtcpps))
 
 
 scroll = env.executable('scroll',
