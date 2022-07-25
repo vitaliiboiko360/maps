@@ -460,7 +460,7 @@ void ParseStyleMaps(const EtaDocument& eta_doc, dbroot::DbRootProto* dbroot) {
 }
 
 const string ConvertToValidUTF8(const string& input) {
-  return std::string(QString(input.c_str()).utf8());
+  return std::string(QString(input.c_str()).toUtf8().data());
 }
 
 
@@ -1095,7 +1095,7 @@ void ParseSearchTabs(const EtaDocument& eta_doc,
       notify(NFY_WARN, "Invalid URL info in search tab: %s\n    host: %s"
                         "    port: %d    secure: %s", eta_tab->name().c_str(),
                         string(url.host()).c_str(), url.port(),
-                        string(url.protocol()).c_str() );
+                        string(url.scheme()).c_str() );
     }
 
     string viewport_prefix = reader.GetString("viewportPrefix", "").c_str();
@@ -1214,7 +1214,7 @@ void ParseValidDatabases(const EtaDocument& eta_doc,
       if (port != 0) {
         url.setPort(port);
       }
-      database->set_database_url(url.toString());
+      database->set_database_url(url.toString().toUtf8().data());
     }
   }
 }
