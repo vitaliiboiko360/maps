@@ -33,4 +33,4 @@ env.install('common_lib', [serverdb, serverdb_r])
 
 env.test('serverdbReader_unittest',
          'serverdbReader_unittest.cpp',
-         LIBS=['serverdb_r', 'gecommon', 'QtGui', 'QtCore', env['png_ver']])
+         LIBS=['serverdb_r', 'gecommon', 'Qt5Gui', 'Qt5Core', env['png_ver']])

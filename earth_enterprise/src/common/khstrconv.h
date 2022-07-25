@@ -19,7 +19,7 @@
 #ifndef __khstrconv_h
 #define __khstrconv_h
 
-#include <qstring.h>
+#include <QtCore/qstring.h>
 
 // Bring in the bulk of the conversions from the "simple" variant of myself
 #include "common/khsimple_strconv.h"

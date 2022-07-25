@@ -30,7 +30,7 @@
 #include <istream>
 #include <memory>
 #include <string>
-#include <qstring.h>
+#include <QtCore/qstring.h>
 
 namespace khxml = xercesc;
 

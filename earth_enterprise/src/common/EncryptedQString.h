@@ -18,7 +18,7 @@
 #ifndef __EncryptedQString_h
 #define __EncryptedQString_h
 
-#include <qstring.h>
+#include <QtCore/qstring.h>
 
 
 // ****************************************************************************

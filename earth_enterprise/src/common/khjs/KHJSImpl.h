@@ -27,8 +27,8 @@
 // jsapi.h
 #include <cstdint>
 #include <gejsapi.h>
-#include <qstring.h>
-#include <qstringlist.h>
+#include <QtCore/qstring.h>
+#include <QtCore/qstringlist.h>
 #include <khMTTypes.h>
 
 // ****************************************************************************

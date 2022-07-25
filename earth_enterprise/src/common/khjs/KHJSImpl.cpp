@@ -79,7 +79,7 @@ void JSContextUser::SetPrivate(JSObject *obj, void* priv) {
 }
 
 bool JSContextUser::IsIdentifier(const QString &str) {
-  return JS_IsIdentifier(rawcx, str.ucs2(), str.length());
+  return JS_IsIdentifier(rawcx, str.utf16(), str.length());
 }
 
 void JSContextUser::ExecuteScript(JSScript *script, jsval *rval) {
@@ -174,7 +174,7 @@ void JSContextUser::DefineReadOnlyPropertyWithTinyId
 (JSObject *obj, const QString &name, std::int8_t tinyid, JSPropertyOp getter)
 {
   if (!JS_DefineUCPropertyWithTinyId(rawcx, obj,
-                                     name.ucs2(), name.length(),
+                                     name.utf16(), name.length(),
                                      tinyid,
                                      0 /* default jsval */,
                                      getter,
@@ -187,7 +187,7 @@ void JSContextUser::DefineReadOnlyPropertyWithTinyId
 void JSContextUser::AddNamedGlobalObject(const QString &name, JSObject *obj)
 {
   if (!JS_DefineUCProperty(rawcx, rawglobal,
-                           name.ucs2(), name.length(),
+                           name.utf16(), name.length(),
                            OBJECT_TO_JSVAL(obj),
                            0 /* getter */, 0 /* setter */,
                            JSPROP_READONLY)) {
@@ -199,7 +199,7 @@ void JSContextUser::DeleteNamedGlobalObject(const QString &name)
 {
   jsval rval;
   (void) JS_DeleteUCProperty2(rawcx, rawglobal,
-                              name.ucs2(), name.length(),
+                              name.utf16(), name.length(),
                               &rval);
 }
 
@@ -227,8 +227,8 @@ JSObject* JSLocalRootScopeGuard::CompileScript(const QString &scriptText,
   jsuser.ClearErrors();
   JSScript *script =
     JS_CompileUCScript(jsuser.rawcx, jsuser.rawglobal,
-                       scriptText.ucs2(), scriptText.length(),
-                       errorContext.latin1(), 0 /* linenum */);
+                       scriptText.utf16(), scriptText.length(),
+                       errorContext.toLocal8Bit().data(), 0 /* linenum */);
   if (!script) {
     jsuser.throwError(kh::tr("Error compiling script"));
   }

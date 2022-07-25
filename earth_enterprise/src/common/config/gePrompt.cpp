@@ -19,7 +19,7 @@
 #include <iostream>
 #include <sstream>
 #include <khFileUtils.h>
-#include <qstring.h>
+#include <QtCore/qstring.h>
 #include <khException.h>
 #include <config/geCapabilities.h>
 
@@ -47,7 +47,7 @@ bool confirm(const std::string &msg, char dflt) {
 }
 
 bool confirm(const QString &msg, char dflt) {
-  return confirm((const char *)msg.utf8(), dflt);
+  return confirm((const char *)msg.toUtf8(), dflt);
 }
 
 char

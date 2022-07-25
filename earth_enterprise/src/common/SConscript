@@ -141,11 +141,13 @@ utilsources = [
     ]
 # TODO: consider to remove dependency from qt
 geutil = env.sharedLib('geutil', utilsources,
-                       LIBS = ['gecommon', 'QtGui', 'QtCore'])
+                    LIBPATH=['/wdir/earthenterprise/earth_enterprise/src/NATIVE-REL-x86_64/lib/',
+                    '/opt/google/lib'],
+                    LIBS = ['gecommon', 'Qt5Gui', 'Qt5Core'])
 
 env.test('quadtreepath_unittest',
          'quadtreepath_unittest.cpp',
-         LIBS=['geutil', 'gecommon', 'QtGui', 'QtCore'])
+         LIBS=['geutil', 'gecommon', 'Qt5Gui', 'Qt5Core'])
 
 env.test('crc_unittest',
          '../third_party/rsa_md5/crc_unittest.cpp',
@@ -153,7 +155,7 @@ env.test('crc_unittest',
 
 env.test('filebundle_unittest',
          'filebundle/filebundle_unittest.cpp',
-         LIBS=['geutil', 'gecommon', 'QtGui', 'QtCore'])
+         LIBS=['geutil', 'gecommon', 'Qt5Gui', 'Qt5Core'])
 
 env.test('cachedreadaccessor_unittest',
          'filebundle/cachedreadaccessor_unittest.cpp',
@@ -169,7 +171,7 @@ env.test('packetfile_unittest',
 
 env.test('packetcompress_unittest',
          'packetcompress_unittest.cpp',
-         LIBS=['geutil', 'gecommon', 'QtGui', 'QtCore'])
+         LIBS=['geutil', 'gecommon', 'Qt5Gui', 'Qt5Core'])
 
 env.test('uuid_unittest',
          '../third_party/rfc_uuid/uuid_unittest.cpp',
@@ -185,7 +187,7 @@ env.test('procpidstats_unittest',
 
 env.test('tile_resampler_unittest',
          'tile_resampler_unittest.cpp',
-         LIBS=['gecommon', 'gtest', 'QtGui', 'QtCore'])
+         LIBS=['gecommon', 'gtest', 'Qt5Gui', 'Qt5Core'])
 
 env.test('verref_storage_unittest',
          'verref_storage_unittest.cpp',

@@ -23,7 +23,7 @@
 #include <map>
 #include <string>
 #include "notify.h"
-#include <qstring.h>
+#include <QtCore/qstring.h>
 #include "SharedString.h"
 
 template<class T>

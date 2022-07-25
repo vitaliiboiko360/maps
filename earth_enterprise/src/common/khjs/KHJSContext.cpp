@@ -147,7 +147,7 @@ KHJSContextImpl::HandleError(const char *msg, JSErrorReport *report)
                     .arg(report->lineno+1);
 
   pendingErrorMsg = fullMsg;
-  notify(NFY_DEBUG, "Javascript HandleError: %s", fullMsg.latin1());
+  notify(NFY_DEBUG, "Javascript HandleError: %s", fullMsg.toLocal8Bit().data());
 }
 
 void

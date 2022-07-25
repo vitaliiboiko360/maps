@@ -34,8 +34,8 @@ gedbroot = env.sharedLib('gedbroot',
                           ],
                          LIBS=['gecommon',
                                'geprotobuf',
-                               'QtGui',
-                               'QtCore'
+                               'Qt5Gui',
+                               'Qt5Core'
                                ])
 
 # scons seems to have issues resolving dependencies of dependencies when 

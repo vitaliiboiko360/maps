@@ -24,8 +24,8 @@
 #include <list>
 #include <set>
 #include <cstdint>
-#include <qstring.h>
-#include <qcolor.h>
+#include <QtCore/qstring.h>
+#include <QtCore/qstring.h>
 #include <Defaultable.h>
 #include <khMetaData.h>
 #include <khExtents.h>

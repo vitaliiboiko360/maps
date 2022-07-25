@@ -21,8 +21,8 @@
 #define COMMON_KHJS_KHJSCONTEXT_H__
 
 #include <cstdint>
-#include <qstring.h>
-#include <qstringlist.h>
+#include <QtCore/qstring.h>
+#include <QtCore/qstringlist.h>
 #include <khMTTypes.h>
 
 // ****************************************************************************

@@ -15,8 +15,8 @@
 
 #include "common/gedbroot/tools/eta_dbroot_utils.h"
 
-#include <qstring.h>
-#include <qurl.h>
+#include <QtCore/qstring.h>
+#include <QtCore/qurl.h>
 
 
 #include <algorithm>
@@ -1090,7 +1090,7 @@ void ParseSearchTabs(const EtaDocument& eta_doc,
     url.setPath(reader.GetString("path", "").c_str());
     url.setProtocol(reader.GetBool("secure", false) ? "https" : "http");
     if (url.isValid()) {
-      search_tab->set_base_url(url.toString());
+      search_tab->set_base_url(url.toString().toUtf8().data());
     } else {
       notify(NFY_WARN, "Invalid URL info in search tab: %s\n    host: %s"
                         "    port: %d    secure: %s", eta_tab->name().c_str(),
