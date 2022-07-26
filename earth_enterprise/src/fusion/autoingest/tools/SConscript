@@ -22,9 +22,9 @@ Import('env')
 # ***  apps that are NOT installed
 # ****************************************************************************
 env.executable('gefindsrconvol', ['gefindsrconvol.cpp'],
-               LIBS=['geautoingest', 'gecommon', 'gemiscconfig', 'geutil', 'QtCore', 'QtGui', 'gexml', 'xerces-c'])
+               LIBS=['geautoingest', 'gecommon', 'gemiscconfig', 'geutil', 'Qt5Core', 'Qt5Gui', 'gexml', 'xerces-c'])
 env.executable('gefindfilesonvol', ['gefindfilesonvol.cpp'],
-               LIBS=['geautoingest', 'gemiscconfig', 'geutil', 'gecommon', 'QtCore', 'QtGui', 'gexml', 'xerces-c'])
+               LIBS=['geautoingest', 'gemiscconfig', 'geutil', 'gecommon', 'Qt5Core', 'Qt5Gui', 'gexml', 'xerces-c'])
 
 
 # ****************************************************************************
@@ -47,15 +47,15 @@ appbase = ['getop',
            ]
 env.install('fusion_bin',
             env.executable('genewmapdatabase', 'genewmapdatabase.cpp',
-            LIBS=['geautoingest', 'gefconfigutil', 'geutil', 'gecommon', 'QtCore', 'QtGui']))
+            LIBS=['geautoingest', 'gefconfigutil', 'geutil', 'gecommon', 'Qt5Core', 'Qt5Gui']))
 env_tmp = env.Clone()
 env_tmp['CPPFLAGS'] += ['-Ifusion/gst']
 env_tmp.install('fusion_bin',
             env_tmp.executable('genewmaplayer', 'genewmaplayer.cpp',
-            LIBS=['geautoingest', 'gefconfigutil', 'geutil', 'gecommon', 'QtCore', 'QtGui']))
+            LIBS=['geautoingest', 'gefconfigutil', 'geutil', 'gecommon', 'Qt5Core', 'Qt5Gui']))
 env.install('fusion_bin', list(map(lambda app: env.executable(app, [app+'.cpp'],
                                                   LIBS=['geautoingest',
-                                                  'gefconfigutil', 'gesearchtabs', 'gemiscconfig', 'geutil', 'gecommon', 'QtCore', 'QtGui','gexml', 'xerces-c']),
+                                                  'gefconfigutil', 'gesearchtabs', 'gemiscconfig', 'geutil', 'gecommon', 'Qt5Core', 'Qt5Gui','gexml', 'xerces-c']),
                        appbase)))
 
 # ****************************************************************************
@@ -63,30 +63,30 @@ env.install('fusion_bin', list(map(lambda app: env.executable(app, [app+'.cpp'],
 # ****************************************************************************
 genewimageryresource = env.executable('genewimageryresource',
                                       ['genewimageryresource.cpp'],
-                                      LIBS=['geautoingest', 'gegdal', 'geutil', 'gecommon', 'gdal', 'QtCore', 'QtGui', 'geos'])
+                                      LIBS=['geautoingest', 'gegdal', 'geutil', 'gecommon', 'gdal', 'Qt5Core', 'Qt5Gui', 'geos'])
 # deprecated
 # gepublishdatabase = env.executable('gepublishdatabase',
 #                                   ['gepublishdatabase.cpp'],
-#                                   LIBS=['geautoingest', 'gepublish', 'dbmanifest', 'geutil', 'gecommon', 'QtCore' ])
+#                                   LIBS=['geautoingest', 'gepublish', 'dbmanifest', 'geutil', 'gecommon', 'Qt5Core' ])
 
 gedisconnectedsend = env.executable('gedisconnectedsend',
                                    ['gedisconnectedsend.cpp'],
-                                   LIBS=['geautoingest', 'dbmanifest', 'gemiscconfig', 'geutil', 'gecommon', 'QtCore', 'QtGui', 'gexml', 'xerces-c'])
+                                   LIBS=['geautoingest', 'dbmanifest', 'gemiscconfig', 'geutil', 'gecommon', 'Qt5Core', 'Qt5Gui', 'gexml', 'xerces-c'])
 # deprecated
 # gedisconnectedreceive = env.executable('gedisconnectedreceive',
 #                                   ['gedisconnectedreceive.cpp'],
-#                                   LIBS=['geutil', 'geconfigutil', 'gefconfigutil', 'gecommon', 'QtCore'])
+#                                   LIBS=['geutil', 'geconfigutil', 'gefconfigutil', 'gecommon', 'Qt5Core'])
 
 # deprecated
 # gedisconnectedclean = env.executable('gedisconnectedclean',
 #                                   ['gedisconnectedclean.cpp'],
-#                                   LIBS=['geutil', 'gecommon', 'QtCore'])
+#                                   LIBS=['geutil', 'gecommon', 'Qt5Core'])
 
 geextractdbs = env.executable(
     'geextractdbs',
     ['geextractdbs.cpp'] +
     env.ObjFromOtherDir(['fusion/dbgen/.idl/DBConfig']),
-    LIBS=['geautoingest', 'gemiscconfig', 'gesearchtabs', 'geindex_r', 'geutil', 'gecommon', 'gexml', 'xerces-c', 'QtCore', 'QtGui'])
+    LIBS=['geautoingest', 'gemiscconfig', 'gesearchtabs', 'geindex_r', 'geutil', 'gecommon', 'gexml', 'xerces-c', 'Qt5Core', 'Qt5Gui'])
 env.install('fusion_bin', [ genewimageryresource, gedisconnectedsend, 'gecleanupcombinedrpassets.py' ])
 env.install('disconnected_bin', [ gedisconnectedsend ])
 env.install('tools_bin', [ geextractdbs ])

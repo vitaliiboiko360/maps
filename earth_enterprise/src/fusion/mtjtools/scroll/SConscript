@@ -32,6 +32,6 @@ scroll = env.executable('scroll',
                          'linreg.cpp',
                          'application.cpp'
                          ] + qtobjs,
-                        LIBS=['gehistogram', 'gdal', 'geutil', 'gecommon', 'QtCore', 'QtGui', 'Qt3Support', 'geos'])
+                        LIBS=['gehistogram', 'gdal', 'geutil', 'gecommon', 'Qt5Core', 'Qt5Gui', 'Qt3Support', 'geos'])
 
 env.install('tools_bin', [scroll])

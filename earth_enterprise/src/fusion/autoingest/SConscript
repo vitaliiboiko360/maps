@@ -89,7 +89,7 @@ idlfiles = [ 'AssetStorage',
              'storage/DatedImageryIndexInfo',
              ]
 
-env.idl(map(lambda n: n+'.idl', idlfiles))
+env.idl(list(map(lambda n: n+'.idl', idlfiles)))
 
 
 plugins = [ 'Source',
@@ -180,7 +180,7 @@ commoncpp = [
     list(map(lambda n: '.idl/'+n+'.cpp', idlfiles)) + \
     list(map(lambda p: 'plugins/'+p+'Asset.cpp', plugins))
 
-commonh = map(lambda n: '.idl/'+n+'.h', idlfiles)
+commonh = list(map(lambda n: '.idl/'+n+'.h', idlfiles))
 
 for idlfile in idlfiles:
     osfile = idlfile + '.os'
@@ -201,7 +201,7 @@ geautoingest = env.sharedLib('geautoingest',
                                            'khAssetManagerProxy.cpp',
                                            env['FUSIONVER'] ],
                              LIBS=['gesearchtabs', 'gemiscconfig', 'genet',
-                                   'geindex_r', 'geutil', 'QtCore','QtGui']
+                                   'geindex_r', 'geutil', 'Qt5Core','Qt5Gui']
                              )
 
 
@@ -223,11 +223,11 @@ env.test('AssetDefsExtra_unittest',
 
 env.test('AssetSerializer_unittest',
          'AssetSerializer_unittest.cpp',
-          LIBS=['gecommon', 'gexml', 'QtCore','QtGui',  'xerces-c', 'gtest'])
+          LIBS=['gecommon', 'gexml', 'Qt5Core','Qt5Gui',  'xerces-c', 'gtest'])
 
 env.test('AssetFactory_unittest',
          'AssetFactory_unittest.cpp',
-         LIBS=['gecommon', 'gtest', 'geautoingest', 'geutil', 'QtCore', 'QtGui', 'xerces-c'])
+         LIBS=['gecommon', 'gtest', 'geautoingest', 'geutil', 'Qt5Core', 'Qt5Gui', 'xerces-c'])
 
 env.test('JsUtils_unittest',
          'JsUtils_unittest.cpp',
@@ -239,7 +239,7 @@ env.test('JsonUtils_unittest',
 
 env.test('StorageManager_unittest',
          'StorageManager_unittest.cpp',
-         LIBS=['gecommon', 'gemiscconfig', 'gtest', 'QtCore', 'QtGui', 'xerces-c', 'gexml'])
+         LIBS=['gecommon', 'gemiscconfig', 'gtest', 'Qt5Core', 'Qt5Gui', 'xerces-c', 'gexml'])
 
 env.test('StorageManagerAssetHandle_unittest',
          'StorageManagerAssetHandle_unittest.cpp',

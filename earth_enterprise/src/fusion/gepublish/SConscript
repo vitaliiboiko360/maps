@@ -32,7 +32,7 @@ env.test('curl_request_unittest',
 
 geserveradmin = env.executable('geserveradmin', 'geserveradmin.cpp',
                            LIBS=['dbmanifest', 'gepublish', 'gemiscconfig',
-                                 'geutil', 'gecommon', 'geautoingest', 'QtCore', 'QtGui',
+                                 'geutil', 'gecommon', 'geautoingest', 'Qt5Core', 'Qt5Gui',
                                  'geconfigutil', 'xerces-c'])
 
 swig_env = env.DeepCopy()
@@ -40,7 +40,7 @@ swig_env['STATIC_AND_SHARED_OBJECTS_ARE_THE_SAME']=1
 root_dir = Dir(swig_env.exportdirs['root']).abspath
 
 cxx_flags = swig_env['CXXFLAGS']
-cxx_flags.remove('-Werror')
+#cxx_flags.remove('-Werror')
 swig_env['CXXFLAGS'] = cxx_flags
 
 swig_env['CPPFLAGS'] += ['-fPIC']  # Needed for 64-bit compilation.

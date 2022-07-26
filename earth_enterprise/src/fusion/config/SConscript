@@ -48,5 +48,5 @@ apps = ['gefdaemoncheck',
 
 env.install('fusion_bin', list(map(lambda app:
                        env.executable(app, [app+'.cpp'],
-                                      LIBS=['gefconfigutil', 'geconfigutil', 'geutil', 'gecommon', 'gemiscconfig', 'QtCore', 'QtGui',  'geautoingest', 'xerces-c', 'gexml']),
+                                      LIBS=['gefconfigutil', 'geconfigutil', 'geutil', 'gecommon', 'gemiscconfig', 'Qt5Core', 'Qt5Gui',  'geautoingest', 'xerces-c', 'gexml']),
                        apps)))

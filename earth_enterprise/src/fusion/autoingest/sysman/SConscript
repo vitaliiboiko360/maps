@@ -30,7 +30,7 @@ env.Append( LINKFLAGS=['-fopenmp'] )
 idlfiles = [ 'NextTaskId', 'JobStorage', 'TaskStorage', 'TaskRule',
              'FusionUniqueId' ]
 
-env.idl(map(lambda n: n+'.idl', idlfiles))
+env.idl(list(map(lambda n: n+'.idl', idlfiles)))
 
 TaskStorageObj = env.SharedObject('.idl/TaskStorage.cpp')
 JobStorageObj  = env.SharedObject('.idl/JobStorage.cpp')
@@ -114,7 +114,7 @@ extraObjs = [TaskStorageObj, JobStorageObj, NextTaskIdObj, TaskRuleObj,
   env.ObjFromOtherDir(otherDirObjs)
 sysmanObjs = list(map(lambda f: str(f).replace(".cpp", ".o"), sysmanFiles))
 sysmanLibs = ['gegdal', 'geraster', 'gesearchtabs', 'genet', 'gepublish', 'gefconfigutil',
-  'geindex_r', 'geutil', 'gecommon', 'gexml', 'gemiscconfig', 'QtCore', 'QtGui', 'xerces-c', 'geos',
+  'geindex_r', 'geutil', 'gecommon', 'gexml', 'gemiscconfig', 'Qt5Core', 'Qt5Gui', 'xerces-c', 'geos',
   'gomp']
 testLibs = sysmanLibs + ['gtest']
 
@@ -130,7 +130,7 @@ geresourceprovider = env.executable('geresourceprovider',
      env['FUSIONVER'],
      env['BUILDDATE'],
      ],
-    LIBS=['geautoingest', 'geconfigutil', 'gefconfigutil', 'geutil', 'gecommon', 'gexml', 'gemiscconfig', 'xerces-c', 'QtCore', 'QtGui'])
+    LIBS=['geautoingest', 'geconfigutil', 'gefconfigutil', 'geutil', 'gecommon', 'gexml', 'gemiscconfig', 'xerces-c', 'Qt5Core', 'Qt5Gui'])
 
 
 env.install('fusion_bin', [ gesystemmanager, geresourceprovider ] )

@@ -48,12 +48,12 @@ env.Append( CXXFLAGS = ['-Wno-unused-function', '-Wno-unused-value', '-Wno-unuse
                   'gif',
                   'jpeg',
                   'freetype',
-                  'QtCore', 'QtGui', 'Qt3Support', 'QtOpenGL', 'QtNetwork',
+                  'Qt5Core', 'Qt5Gui', 'Qt3Support', 'QtOpenGL', 'QtNetwork',
                   'xerces-c',
                   'GL'])
 
 idlfiles = [ 'layoutpersist', 'preferences', 'filehistory', 'thematicstyles' ]
-env.idl(map(lambda n: n+'.idl', idlfiles))
+env.idl(list(map(lambda n: n+'.idl', idlfiles)))
 
 uifiles = [
   'aboutfusionbase.ui',

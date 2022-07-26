@@ -47,7 +47,7 @@ gemaskgen = env.executable('gemaskgen',
                             featherer, boxfilter, geimgwriter],
                            LIBS=['geautoingest', 'dbmanifest', 'geraster',
                             'gegdal', 'gejs', 'gerastergdal',
-                            'curl', 'geqtpacket', 'glutess', 'gdal', 'geutil', 'gecommon', 'QtCore','QtGui', 'geos'])
+                            'curl', 'geqtpacket', 'glutess', 'gdal', 'geutil', 'gecommon', 'Qt5Core','Qt5Gui', 'geos'])
 
 geqtpacketdump = env.executable('geqtpacketdump',
                                ['geqtpacketdump.cpp'],
@@ -57,27 +57,27 @@ gepolymaskgen = env.executable('gepolymaskgen',
                                ['gepolymaskgen.cpp', polymask,
                                 featherer, boxfilter, geimgwriter],
                                LIBS=['geautoingest', 'dbmanifest',
-                                     'geraster', 'gegdal', 'gerastergdal', 'gdal', 'geutil', 'gecommon', 'QtCore','QtGui', 'geos'])
+                                     'geraster', 'gegdal', 'gerastergdal', 'gdal', 'geutil', 'gecommon', 'Qt5Core','Qt5Gui', 'geos'])
 
 gevectorimport = env.executable('gevectorimport', 'gevectorimport.cpp',
-                                LIBS=['gegst', 'sgl', 'gif', env['png_ver'], 'jpeg', 'freetype', 'QtCore','QtGui', 'geutil', 'gecommon', 'geos'])
+                                LIBS=['gegst', 'sgl', 'gif', env['png_ver'], 'jpeg', 'freetype', 'Qt5Core','Qt5Gui', 'geutil', 'gecommon', 'geos'])
 
 gevectorquery = env.executable('gevectorquery', 'gevectorquery.cpp',
-                               LIBS=['gegst', 'sgl', 'gif', env['png_ver'], 'jpeg', 'freetype', 'QtCore','QtGui', 'geutil', 'gecommon', 'geautoingest', 'geos'])
+                               LIBS=['gegst', 'sgl', 'gif', env['png_ver'], 'jpeg', 'freetype', 'Qt5Core','Qt5Gui', 'geutil', 'gecommon', 'geautoingest', 'geos'])
 
 gevectorfuse = env.executable('gevectorfuse', 'gevectorfuse.cpp',
-                              LIBS=['gegst', 'sgl', 'gif', env['png_ver'], 'jpeg', 'freetype', 'QtCore','QtGui', 'gecommon', 'geautoingest', 'geos'])
+                              LIBS=['gegst', 'sgl', 'gif', env['png_ver'], 'jpeg', 'freetype', 'Qt5Core','Qt5Gui', 'gecommon', 'geautoingest', 'geos'])
 
 gevectorpoi = env.executable('gevectorpoi', 'gevectorpoi.cpp',
-                              LIBS=['gegst', 'sgl', 'gif', env['png_ver'], 'jpeg', 'freetype', 'QtCore','QtGui', 'geutil', 'gecommon', 'geautoingest', 'geos'])
+                              LIBS=['gegst', 'sgl', 'gif', env['png_ver'], 'jpeg', 'freetype', 'Qt5Core','Qt5Gui', 'geutil', 'gecommon', 'geautoingest', 'geos'])
 
 env.executable('gemunge', 'gemunge.cpp',
-               LIBS=['gegdal', 'QtCore','QtGui', 'geutil', 'gecommon', 'gdal', 'geos'])
+               LIBS=['gegdal', 'Qt5Core','Qt5Gui', 'geutil', 'gecommon', 'gdal', 'geos'])
 
-env.test('geunittest', 'geunittest.cpp', LIBS=['gegst', 'sgl', 'gif', env['png_ver'], 'jpeg', 'freetype', 'gecommon', 'QtCore','QtGui', 'geautoingest', 'geos', 'geutil'])
+env.test('geunittest', 'geunittest.cpp', LIBS=['gegst', 'sgl', 'gif', env['png_ver'], 'jpeg', 'freetype', 'gecommon', 'Qt5Core','Qt5Gui', 'geautoingest', 'geos', 'geutil'])
 
 env.executable('gemakeogrsql', 'gemakeogrsql.cpp',
-               LIBS=['gegst', 'sgl', 'gif', env['png_ver'], 'jpeg', 'freetype', 'geutil', 'gecommon', 'QtCore','QtGui', 'gegdal', 'gdal', 'geos'])
+               LIBS=['gegst', 'sgl', 'gif', env['png_ver'], 'jpeg', 'freetype', 'geutil', 'gecommon', 'Qt5Core','Qt5Gui', 'gegdal', 'gdal', 'geos'])
 
 gevectorpackupgrade = env.executable('gevectorpackupgrade',
                                      'gevectorpackupgrade.cpp',
@@ -86,23 +86,23 @@ gevectorpackupgrade = env.executable('gevectorpackupgrade',
 gerasterpackupgrade = env.executable('gerasterpackupgrade',
                                      'gerasterpackupgrade.cpp',
                                      LIBS=['geautoingest', 'geraster',
-                                           'khffio', 'geutil', 'gecommon', 'QtCore'])
+                                           'khffio', 'geutil', 'gecommon', 'Qt5Core'])
 
 env.executable('coverage', 'coverage.cpp',
                LIBS=['geutil', 'gecommon'])
 
 tiledfloodfill_test = env.test('tiledfloodfill_test',
                                ['tiledfloodfill_test.cpp', tiledfloodfill],
-                               LIBS=['geutil', 'QtCore','QtGui', 'gecommon'])
+                               LIBS=['geutil', 'Qt5Core','Qt5Gui', 'gecommon'])
 
 boxfilter_test = env.test('boxfilter_test',
                           ['boxfilter_test.cpp', boxfilter],
-                          LIBS=['geutil', 'gecommon', 'QtCore'])
+                          LIBS=['geutil', 'gecommon', 'Qt5Core'])
 
 featherer_test = env.test('Featherer_unittest',
                           ['Featherer_unittest.cpp', featherer,
                            boxfilter],
-                          LIBS=['gtest', 'geutil', 'gecommon', 'gegdal', 'gdal', 'QtCore','QtGui', 'geos'])
+                          LIBS=['gtest', 'geutil', 'gecommon', 'gegdal', 'gdal', 'Qt5Core','Qt5Gui', 'geos'])
 
 geImageWriter_test = env.test('geImageWriter_unittest',
                               ['geImageWriter_unittest.cpp', geimgwriter],
@@ -113,7 +113,7 @@ polymask_test = env.test('polymask_unittest',
                          ['polymask_unittest.cpp', polymask,
                           featherer, boxfilter, geimgwriter],
                          LIBS=['gtest', 'geutil', 'geraster',
-                               'gegdal', 'gerastergdal', 'gdal', 'gecommon', 'QtCore','QtGui', 'geos'])
+                               'gegdal', 'gerastergdal', 'gdal', 'gecommon', 'Qt5Core','Qt5Gui', 'geos'])
 
 env.install('fusion_bin', [gevectorimport, gevectorquery, gevectorfuse,
                            gemaskgen, gepolymaskgen, geextracticon,

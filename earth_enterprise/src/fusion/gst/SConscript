@@ -125,7 +125,7 @@ gegst = env.sharedLib('gegst', sources,
 
 gesimpleearthstream = env.sharedLib('gesimpleearthstream',
                                     simple_earthstream_sources,
-                                    LIBS=['curl', 'QtCore', 'QtGui'])
+                                    LIBS=['curl', 'Qt5Core', 'Qt5Gui'])
 
 # unit tests
 sources_unittest = ['gstUnitTestUtils.cpp']

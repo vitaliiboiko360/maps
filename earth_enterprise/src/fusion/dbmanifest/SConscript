@@ -37,6 +37,6 @@ dbmanifest_tests = env.test('dbmanifest_tests',
                                'gecommon',
                                'xerces-c',
                                'gexml',
-                               'QtCore', 'QtGui'])
+                               'Qt5Core', 'Qt5Gui'])
 
 env.install('common_lib', [dbmanifest])

@@ -28,7 +28,7 @@ gegdal = env.sharedLib('gegdal', ['khgdal.cpp',
                                   '.idl/khVirtualRaster.cpp',
                                   'khGDALReader.cpp',
                                  ],
-                       LIBS=['gexml', 'gdal', 'QtCore','QtGui', 'gecommon', 'geutil'])
+                       LIBS=['gexml', 'gdal', 'Qt5Core','Qt5Gui', 'gecommon', 'geutil'])
 
 gegdalutil = env.sharedLib('gegdalutil', ['RasterClusterAnalyzer.cpp'],
                            LIBS=['gegdal', 'gecommon'])
@@ -36,19 +36,19 @@ gegdalutil = env.sharedLib('gegdalutil', ['RasterClusterAnalyzer.cpp'],
 
 geinfo = env.executable('geinfo', 'geinfo.cpp',
                         LIBS=['gegdal', 'geraster', 'geindex_rw',
-                              'geqtpacket', 'geindex_r', 'geutil', 'gecommon', 'gdal', 'QtCore','QtGui', 'geos'])
+                              'geqtpacket', 'geindex_r', 'geutil', 'gecommon', 'gdal', 'Qt5Core','Qt5Gui', 'geos'])
 
 gevirtualraster = env.executable('gevirtualraster', ['gevirtualraster.cpp'],
-                                 LIBS=['gegdal', 'gegdalutil', 'geutil', 'gecommon', 'gdal', 'QtCore','QtGui', 'geos'])
+                                 LIBS=['gegdal', 'gegdalutil', 'geutil', 'gecommon', 'gdal', 'Qt5Core','Qt5Gui', 'geos'])
 
 geupdatelut = env.executable('geupdatelut', 'geupdatelut.cpp',
-                             LIBS=['gegdal', 'geutil', 'gecommon', 'gdal', 'QtCore','QtGui', 'geos'])
+                             LIBS=['gegdal', 'geutil', 'gecommon', 'gdal', 'Qt5Core','Qt5Gui', 'geos'])
 
 gesplitkhvr = env.executable('gesplitkhvr', 'gesplitkhvr.cpp',
-                             LIBS=['gegdal', 'geutil', 'gecommon', 'QtCore','QtGui', 'geos'])
+                             LIBS=['gegdal', 'geutil', 'gecommon', 'Qt5Core','Qt5Gui', 'geos'])
 
 khprepvirtrast = env.executable('khprepvirtrast', 'khprepvirtrast.cpp',
-                                LIBS=['gegdal', 'geutil', 'gecommon', 'gdal', 'QtCore','QtGui', 'geos'])
+                                LIBS=['gegdal', 'geutil', 'gecommon', 'gdal', 'Qt5Core','Qt5Gui', 'geos'])
 getranslate = env.executable('getranslate', 'getranslate.cpp',
                              LIBS=['gegdal', 'gdal', 'geos'])
 gereproject = env.executable('gereproject', 'gereproject.cpp',
