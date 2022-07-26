@@ -23,10 +23,9 @@ gexml = env.sharedLib('gexml', ['khxml.cpp'],
 env.install('common_lib', [gexml])
 
 
-test_idlfiles = ['test_classes',
-                 ]
+test_idlfiles = ['test_classes']
 
-env.idl(map(lambda n: n+'.idl', test_idlfiles))
+env.idl(list(map(lambda n: n+'.idl', test_idlfiles)))
 
 env.test('idl_tests',
          ['idl_tests.cc',
