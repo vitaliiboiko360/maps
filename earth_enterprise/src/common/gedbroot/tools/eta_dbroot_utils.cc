@@ -237,7 +237,7 @@ bool MaybeSetUrlFromEta(const EtaStruct& root, const char* struct_name,
   field_name = string(struct_name) + ".secureSS";
   bool secure = false;
   MaybeReadFromNamedChild(root, field_name.c_str(), &secure);
-  url.setProtocol(secure ? "https" : "http");
+  url.setScheme(secure ? "https" : "http");
 
   AddStringToProto(url.toString().toStdString(), output);
 
@@ -1088,14 +1088,14 @@ void ParseSearchTabs(const EtaDocument& eta_doc,
     url.setHost(reader.GetString("host", "").c_str());
     url.setPort(reader.GetInt("port", 0));
     url.setPath(reader.GetString("path", "").c_str());
-    url.setProtocol(reader.GetBool("secure", false) ? "https" : "http");
+    url.setScheme(reader.GetBool("secure", false) ? "https" : "http");
     if (url.isValid()) {
       search_tab->set_base_url(url.toString().toUtf8().data());
     } else {
       notify(NFY_WARN, "Invalid URL info in search tab: %s\n    host: %s"
                         "    port: %d    secure: %s", eta_tab->name().c_str(),
-                        string(url.host()).c_str(), url.port(),
-                        string(url.scheme()).c_str() );
+                        string(url.host().toUtf8().data()).c_str(), url.port(),
+                        string(url.scheme().toUtf8().data()).c_str() );
     }
 
     string viewport_prefix = reader.GetString("viewportPrefix", "").c_str();
