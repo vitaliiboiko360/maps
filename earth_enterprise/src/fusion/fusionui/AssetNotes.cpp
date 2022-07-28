@@ -14,7 +14,7 @@
 
 
 #include <qtextedit.h>
-#include <qdatetime.h>
+#include <QtCore/qdatetime.h>
 
 #include "AssetNotes.h"
 

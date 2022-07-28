@@ -80,7 +80,7 @@ InsetStackItem RasterLayerProperties::getConfig() const
   //   inset's max level
   // GetInsetLevels() extracts the inset's min/max level from the inset
 
-  cfg.dataAsset = assetNameLabel->text().latin1();
+  cfg.dataAsset = assetNameLabel->text().toLatin1().data();
 
   unsigned int insetmin = 0;
   unsigned int insetmax = 0;

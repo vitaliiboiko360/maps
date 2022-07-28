@@ -17,8 +17,8 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include <QObject>
-#include <qmainwindow.h>
+#include <QtCore/qobject.h>
+#include <QtWidgets/qmainwindow.h>
 #include "imageview.h"
 
 class QTextEdit;

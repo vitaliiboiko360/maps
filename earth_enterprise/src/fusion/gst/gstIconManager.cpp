@@ -36,7 +36,7 @@
 gstIcon::gstIcon(const QString& href, IconReference::Type t)
   : config(t, href) {
   // trim extension if given one
-  if (khHasExtension(href.latin1(), ".png"))
+  if (khHasExtension(href.toLatin1().data(), ".png"))
     config.href.setLength(config.href.length() - 4);
 }
 
@@ -114,7 +114,7 @@ const std::string& gstIconManager::GetPath(IconReference::Type ctype) const {
 
 std::string gstIconManager::GetFullPath(IconReference::Type type, int idx) const {
   std::string path = khComposePath(GetPath(type),
-                                   collection_[type][idx].href().latin1());
+                                   collection_[type][idx].href().toLatin1().data());
   return khEnsureExtension(path, ".png");
 }
 

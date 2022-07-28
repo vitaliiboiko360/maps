@@ -17,7 +17,7 @@
 #include "fusion/fusionui/ThematicFilter.h"
 
 #include <Qt/q3progressdialog.h>
-#include <Qt/qapplication.h>
+#include <QtWidgets/qapplication.h>
 #include <Qt/q3listbox.h>
 #include <Qt/qcolordialog.h>
 #include <Qt/qpushbutton.h>

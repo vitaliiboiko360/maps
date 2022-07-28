@@ -13,7 +13,7 @@
 // limitations under the License.
 
 
-#include <Qt/qpainter.h>
+#include <QtGui/qpainter.h>
 #include <Qt/qmessagebox.h>
 
 #include <gstSelector.h>

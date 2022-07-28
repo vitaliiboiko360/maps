@@ -25,9 +25,9 @@
 #include <Qt/qlabel.h>
 #include <Qt/qpushbutton.h>
 #include <Qt/qgroupbox.h>
-#include <Qt/qimage.h>
+#include <QtGui/qimage.h>
 #include <Qt/q3dragobject.h>
-#include <Qt/qpixmap.h>
+#include <QtGui/qpixmap.h>
 #include <Qt/qmessagebox.h>
 #include <SkFontHost.h>
 #include "khException.h"

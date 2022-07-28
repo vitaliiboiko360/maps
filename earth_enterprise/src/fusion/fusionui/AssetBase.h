@@ -21,7 +21,7 @@
 #include <QtGui/qmenudata.h>
 #include <Qt/qaction.h>
 #include <Qt/qvariant.h>
-#include <Qt/qmainwindow.h>
+#include <QtWidgets/qmainwindow.h>
 #include <khMetaData.h>
 #include <Qt/q3popupmenu.h>
 #include <autoingest/.idl/storage/AssetDefs.h>

@@ -139,7 +139,7 @@ main(int argc, char *argv[]) {
         QString layer_name = layer->DefaultNameWithPath();
         layer_name.replace("/", "&#47;");
         std::string outfile = khComposePath(output,
-                                            (const char *)layer_name.utf8()) +
+                                            (const char *)layer_name.toUtf8()) +
                               ".khdsp";
         if (!layer->Save(outfile)) {
           // error message already emitted

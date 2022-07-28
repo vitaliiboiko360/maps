@@ -117,29 +117,29 @@ void VectorDbrootGenerator::EmitNestedLayers(void) {
     // make some unique names we're going to use to map our flat structure to
     // the new nested structure
     std::string unique_layer_name(
-        (const char*)GetUniqueName(layer->DefaultNameWithPath()).utf8());
+        (const char*)GetUniqueName(layer->DefaultNameWithPath()).toUtf8());
     std::string unique_parent_name(
-        (const char*)GetUniqueName(layer->legend).utf8());
+        (const char*)GetUniqueName(layer->legend).toUtf8());
 
     // get the localized strings for this locale
-    std::string display_name((const char*)localecfg.name_.GetValue().utf8());
+    std::string display_name((const char*)localecfg.name_.GetValue().toUtf8());
     std::string description(
-        (const char*)localecfg.desc_.GetValue().section('\n', 0, 0).utf8());
-    std::string look_at((const char*)localecfg.look_at_.GetValue().utf8());
+        (const char*)localecfg.desc_.GetValue().section('\n', 0, 0).toUtf8());
+    std::string look_at((const char*)localecfg.look_at_.GetValue().toUtf8());
     std::string kml_layer_url(
-        (const char*)localecfg.kml_layer_url_.GetValue().utf8());
+        (const char*)localecfg.kml_layer_url_.GetValue().toUtf8());
     std::string required_client_vram(
-        (const char*)localecfg.required_client_vram_.GetValue().utf8());
+        (const char*)localecfg.required_client_vram_.GetValue().toUtf8());
     std::string required_client_version(
-        (const char*)localecfg.required_client_version_.GetValue().utf8());
+        (const char*)localecfg.required_client_version_.GetValue().toUtf8());
     std::string probability(
-        (const char*)localecfg.probability_.GetValue().utf8());
+        (const char*)localecfg.probability_.GetValue().toUtf8());
     std::string required_user_agent(
-        (const char*)localecfg.required_user_agent_.GetValue().utf8());
+        (const char*)localecfg.required_user_agent_.GetValue().toUtf8());
     std::string required_client_capabilities(
-        (const char*)localecfg.required_client_capabilities_.GetValue().utf8());
+        (const char*)localecfg.required_client_capabilities_.GetValue().toUtf8());
     std::string client_config_script_name(
-        (const char*)localecfg.client_config_script_name_.GetValue().utf8());
+        (const char*)localecfg.client_config_script_name_.GetValue().toUtf8());
     std::int32_t diorama_data_channel_base =
         localecfg.diorama_data_channel_base_.GetValue();
     std::int32_t diorama_replica_data_channel_base =
@@ -285,7 +285,7 @@ void VectorDbrootGenerator::EmitStyleAttrs(void) {
           keyhole::dbroot::StyleAttributeProto* style_attribute =
               outproto_.add_style_attribute();
           style_attribute->set_style_id(
-              CompactStyleName(feature_style_name).latin1());
+              CompactStyleName(feature_style_name).toLatin1().data());
           style_attribute->set_provider_id(providerId);
           style_attribute->set_poly_color_abgr(ColorVecToABGR(polyColor));
           style_attribute->set_line_color_abgr(ColorVecToABGR(style.lineColor));
@@ -393,7 +393,7 @@ void VectorDbrootGenerator::EmitStyleAttrs(void) {
           keyhole::dbroot::StyleAttributeProto* normal_style =
               outproto_.add_style_attribute();
           normal_style->set_style_id(
-              CompactStyleName(site_style_name_normal).latin1());
+              CompactStyleName(site_style_name_normal).toLatin1().data());
           normal_style->set_provider_id(providerId);
           // no poly color for sites
           // no line color for sites
@@ -405,7 +405,7 @@ void VectorDbrootGenerator::EmitStyleAttrs(void) {
           normal_style->set_placemark_icon_scale(style.icon.normalScale);
           normal_style->set_label_scale(style.label.normalScale);
           SetProtoStringId(normal_style->mutable_placemark_icon_path(),
-                           std::string((const char *)normalIcon.ascii()));
+                           std::string((const char *)normalIcon.toLatin1().data()));
           normal_style->set_placemark_icon_x(0);
           normal_style->set_placemark_icon_y(0);
           normal_style->set_placemark_icon_width(icon_width);
@@ -424,7 +424,7 @@ void VectorDbrootGenerator::EmitStyleAttrs(void) {
               outproto_.add_style_attribute();
           highlight_style->CopyFrom(*normal_style);
           highlight_style->set_style_id(
-              CompactStyleName(site_style_name_highlight).latin1());
+              CompactStyleName(site_style_name_highlight).toLatin1().data());
           highlight_style->set_placemark_icon_color_abgr(
               ColorVecToABGR(style.icon.highlightColor));
           highlight_style->set_label_color_abgr(
@@ -432,7 +432,7 @@ void VectorDbrootGenerator::EmitStyleAttrs(void) {
           highlight_style->set_placemark_icon_scale(style.icon.highlightScale);
           highlight_style->set_label_scale(style.label.highlightScale);
           SetProtoStringId(highlight_style->mutable_placemark_icon_path(),
-                           std::string((const char *)highlightIcon.ascii()));
+                           std::string((const char *)highlightIcon.toLatin1().data()));
           highlight_style->set_placemark_icon_y(icon_width);
         }
       }  /* if (rule->site.enabled) */

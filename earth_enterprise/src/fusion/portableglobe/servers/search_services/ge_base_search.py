@@ -36,7 +36,7 @@ class GEBaseSearch(object):
 
   def __init__(self):
     # Beginning template for search results.
-    self.kml_start_template_ = """<?xml version="1.0" encoding="latin1"?>
+    self.kml_start_template_ = """<?xml version="1.0" encoding="toLatin1().data()"?>
 <kml xmlns="http://earth.google.com/kml/2.1">
     <Folder>
         <name><![CDATA[Grouped search results: %s]]></name>
@@ -168,7 +168,7 @@ datastoreName: "%s", searchTerm: "%s", success: true,  data:
   # Methods to override with custom service.
 
   def KmlSearch(self, unused_handler):
-    print "Need to override KmlSearch."
+    print("Need to override KmlSearch.")
 
   def JsonSearch(self, unused_handler, unused_cb):
-    print "Need to override JsonSearch."
+    print("Need to override JsonSearch.")

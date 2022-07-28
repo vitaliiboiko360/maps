@@ -64,7 +64,7 @@ Description: Specialized TCPConnection for communicating via the Fusion
  ***  response.  The code can determine if the request finished or had an
  ***  exception by checking the RecvPacket's msgType field.
  ***  msgType == ExceptionMsg
- ***     utf8 encoded error string is in the payload
+ ***     toUtf8() encoded error string is in the payload
  ***  msgType == ReplyMsg
  ***     payload contains the cmdname specific reply data
  ***
@@ -193,7 +193,7 @@ class FusionConnection : public TCPConnection
   void SendException(const RecvPacket &req, const QString &errorMsg,
                      int timeout = 0)
   {
-    Send(RecvPacket(req, ExceptionMsg, (const char *)(errorMsg.utf8())),
+    Send(RecvPacket(req, ExceptionMsg, (const char *)(errorMsg.toUtf8().data())),
          timeout);
   }
 

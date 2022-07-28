@@ -15,8 +15,8 @@
 
 #include <sys/types.h>
 #include <dirent.h>
-#include <Qt/qimage.h>
-#include <Qt/qpixmap.h>
+#include <QtGui/qimage.h>
+#include <QtGui/qpixmap.h>
 #include <Qt/q3iconview.h>
 #include <Qt/qtabwidget.h>
 #include <Qt/qmessagebox.h>
@@ -97,7 +97,7 @@ bool SiteIcons::selectIcon(QWidget *parent, PixmapManager::IconType type,
   SiteIcons dialog(parent, type);
 
   if (!dialog.setSelection(*icon)) {
-    notify(NFY_WARN, "Can't find icon: %s", icon->href().ascii());
+    notify(NFY_WARN, "Can't find icon: %s", icon->href().toLatin1().data());
     dialog.setDefault();
   }
 

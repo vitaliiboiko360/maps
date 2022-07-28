@@ -351,13 +351,13 @@ now serving</div>
           description, PosixPath(globe_path), is_2d,
           is_3d, has_polygon, is_mercator, is_being_served))
     except Exception as e:
-      print "Bad globe: ", globe_name
-      print e
+      print("Bad globe: ", globe_name)
+      print(e)
     return globe_info_obj
 
   def get(self, path):
     """Handles GET request for set-up."""
-    print "SetupHandler get", self.request.uri
+    print("SetupHandler get", self.request.uri)
 
     if "cmd" not in self.request.arguments:
       self.servePortablePage(path)
@@ -365,7 +365,7 @@ now serving</div>
 
     try:
       cmd = self.request.arguments["cmd"][0]
-      print "cmd (get): \"%s\"" % cmd
+      print("cmd (get): \"%s\"" % cmd)
 
       if cmd in ["globe_info_json", "globe_info"]:
         if not self.IsValidRequest():
@@ -450,7 +450,7 @@ now serving</div>
 
     cmd = self.request.arguments["cmd"][0]
     self.set_header("Content-Type", "text/html")
-    print "cmd (post) : \"%s\"" % cmd
+    print("cmd (post) : \"%s\"" % cmd)
     if cmd == "quit":
       tornado.ioloop.IOLoop.instance().stop()
     elif cmd == "local_only":

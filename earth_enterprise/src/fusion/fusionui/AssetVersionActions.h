@@ -27,7 +27,7 @@ For history see CVS log (cvs log AssetVersionActions.h -or- Emacs Ctrl-xvl).
 
 
 #include <qaction.h>
-#include <qobject.h>
+#include <QtCore/qobject.h>
 #include <Qt/q3popupmenu.h>
 using QPopupMenu = Q3PopupMenu;
 

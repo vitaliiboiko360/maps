@@ -116,7 +116,7 @@ void VectorDbrootContext::EmitAll(const std::string &out_dir,
     typedef std::set<QString>::const_iterator SetIterator;
     for (SetIterator i = used_locales.begin(); i != used_locales.end(); ++i) {
       std::string outfile = out_dir + "/" + kPostamblePrefix +
-          "." + i->latin1();
+          "." + i->toLatin1().data();
       VectorDbrootGenerator dbrootgen(this, *i /* locale */, outfile);
       dbrootgen.Emit(output_format);
     }

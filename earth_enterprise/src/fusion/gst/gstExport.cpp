@@ -19,11 +19,11 @@
 #include <third_party/rsa_md5/crc32.h>
 #include <unistd.h>
 #include <algorithm>
-#include <qstring.h>
+#include <QtCore/qstring.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <qcolor.h>
+#include <QtGui/qcolor.h>
 
 #include <notify.h>
 #include <gstGeode.h>

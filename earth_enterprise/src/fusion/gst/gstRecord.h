@@ -69,7 +69,7 @@ class gstHeaderImpl : public khMTRefCounter {
   int FieldPosByName(const QString& fieldName);
 
   const QString & Name(int c) const { return field_specs_[c].name; }
-  //  const char* name(int c) const { return field_specs_[c].name.latin1(); }
+  //  const char* name(int c) const { return field_specs_[c].name.toLatin1().data(); }
   std::uint32_t ftype(int c) const { return field_specs_[c].ftype; }
   int length(int c) const { return field_specs_[c].length; }
   double mult(int c) const { return field_specs_[c].multiplier; }

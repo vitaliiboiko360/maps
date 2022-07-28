@@ -25,10 +25,10 @@ using QHeader = Q3Header;
 #include <Qt/qpushbutton.h>
 #include <Qt/qlayout.h>
 #include <Qt/qlabel.h>
-#include <Qt/qstringlist.h>
+#include <QtCore/qstringlist.h>
 #include <Qt/qmessagebox.h>
 #include <Qt/q3popupmenu.h>
-#include <Qt/qpainter.h>
+#include <QtGui/qpainter.h>
 #include <Qt/qcursor.h>
 
 #include <gstIconManager.h>
@@ -263,7 +263,7 @@ void LookAtItem::MouseButtonPressed(int button, const QPoint& pos) {
 
   QString sourceFileName = files[0];
 
-  gstSource src(sourceFileName.ascii());
+  gstSource src(sourceFileName.toLatin1().data());
   if (src.Open() != GST_OKAY) {
     QMessageBox::critical(table(), "Error" ,
                       QObject::tr("Unable to open the source file."),

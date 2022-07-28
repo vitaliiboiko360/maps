@@ -21,8 +21,8 @@
 #define FUSION_FUSIONUI_TEXTSTYLE_H__
 #include <Qt/qobjectdefs.h>
 #include <Qt/qglobal.h>
-#include <Qt/qobject.h>
-#include <Qt/qpixmap.h>
+#include <QtCore/qobject.h>
+#include <QtGui/qpixmap.h>
 #include <Qt/qlabel.h>
 #include <Qt/qpushbutton.h>
 #include <memory>

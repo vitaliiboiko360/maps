@@ -50,7 +50,7 @@ void VectorLayerWidget::Prefill(const VectorLayerXEditRequest& req) {
 void VectorLayerWidget::AssembleEditRequest(VectorLayerXEditRequest* req) {
   if (vector_resource_label->text() != empty_text) {
     req->config.vectorResource =
-        vector_resource_label->text().latin1() +
+        vector_resource_label->text().toLatin1().data() +
         AssetDefs::FileExtension(AssetDefs::Vector, kProductSubtype);
   } else {
     req->config.vectorResource = std::string();

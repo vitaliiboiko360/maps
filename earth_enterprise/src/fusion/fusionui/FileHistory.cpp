@@ -25,8 +25,8 @@ FileHistory::FileHistory(QWidget* parent, const QString& path)
   setText(trUtf8("Recent..."));
 
   // retrieve from disk
-  if (khExists(filePath.latin1()))
-    history.Load(filePath.latin1());
+  if (khExists(filePath.toLatin1().data()))
+    history.Load(filePath.toLatin1().data());
 
   connect(this, SIGNAL(clicked()), this, SLOT(chooseRecent()));
 }
@@ -79,7 +79,7 @@ void FileHistory::addFile(const QString& fname) {
   if (history.files.size() > kMaxHistoryLength)
     history.files.resize(kMaxHistoryLength);
 
-  history.Save(filePath.latin1());
+  history.Save(filePath.toLatin1().data());
 }
 
 void FileHistory::addFiles(const QStringList& flist) {
@@ -98,10 +98,10 @@ void FileHistory::addFiles(const QStringList& flist) {
   if (history.files.size() > kMaxHistoryLength)
     history.files.resize(kMaxHistoryLength);
 
-  history.Save(filePath.latin1());
+  history.Save(filePath.toLatin1().data());
 }
 
 void FileHistory::clearFileHistory() {
   history.files.clear();
-  history.Save(filePath.latin1());
+  history.Save(filePath.toLatin1().data());
 }

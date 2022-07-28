@@ -34,7 +34,7 @@
 #include "fusion/autoingest/plugins/RasterProductAsset.h"
 
 #include <Qt/q3popupmenu.h>
-#include <Qt/qmenu.h>
+#include <QtWidgets/qmenu.h>
 #include <Qt/q3header.h>
 #include <Qt/qlineedit.h>
 #include <Qt/qmessagebox.h>
@@ -163,7 +163,7 @@ void RasterLayerItem::InitBBox() {
   AssetVersion ver(asset->GetLastGoodVersionRef());
   if (ver) {
     double n, s, e, w;
-    if (sscanf((const char*)ver->meta.GetValue("extents").utf8(),
+    if (sscanf((const char*)ver->meta.GetValue("extents").toUtf8(),
                               "%lf,%lf,%lf,%lf", &n, &s, &e, &w) == 4) {
       if (is_mercator_) {
         bbox_.init(khTilespace::NormalizeMeter(w),
@@ -395,7 +395,7 @@ void RasterProjectWidget::AssembleEditRequest(
     throw khException(kh::tr("Missing legend name"));
   }
   request->config.legend = legend_config_;
-  request->config.asset_uuid_ = uuid_edit->text().ascii();
+  request->config.asset_uuid_ = uuid_edit->text().toLatin1().data();
 
   // TODO: allow turning off of TimeMachine capability via GUI.
     // && LicenseManager::TimeMachineCapable && is_timemachine_project_

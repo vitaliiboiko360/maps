@@ -24,7 +24,7 @@
 #include <Qt/qlineedit.h>
 #include <Qt/q3textedit.h>
 #include <Qt/qvalidator.h>
-#include <Qt/qdatetime.h>
+#include <QtCore/qdatetime.h>
 #include <Qt/qlabel.h>
 
 using QTextEdit = Q3TextEdit;

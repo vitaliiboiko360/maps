@@ -123,7 +123,7 @@ void ProtoDbrootGenerator::AddUsedProviders(void) {
       // the user.
       std::string output_copyright =
           google::protobuf::UnescapeCEscapeString(
-              std::string(provider->copyright.utf8()));
+              std::string(provider->copyright.toUtf8()));
 
       SetProtoStringId(provider_proto->mutable_copyright_string(),
                        output_copyright);

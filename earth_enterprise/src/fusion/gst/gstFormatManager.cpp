@@ -16,7 +16,7 @@
 #include <string>
 #include <dlfcn.h>
 #include <ctype.h>
-#include <qstringlist.h>
+#include <QtCore/qstringlist.h>
 #include <qregexp.h>
 
 #include <khFileUtils.h>

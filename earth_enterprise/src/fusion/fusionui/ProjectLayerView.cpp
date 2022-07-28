@@ -15,8 +15,8 @@
 
 #include <Qt/q3dragobject.h>
 #include <Qt/q3header.h>
-#include <Qt/qstringlist.h>
-#include <Qt/qobject.h>
+#include <QtCore/qstringlist.h>
+#include <QtCore/qobject.h>
 #include "ProjectLayerView.h"
 #include "Preferences.h"
 using QListView = Q3ListView;

@@ -17,7 +17,7 @@
 #ifndef KHSRC_FUSION_GST_GSTFORMATMANAGER_H__
 #define KHSRC_FUSION_GST_GSTFORMATMANAGER_H__
 
-#include <qstring.h>
+#include <QtCore/qstring.h>
 #include <gstFormat.h>
 #include <vector>
 #include <common/base/macros.h>
@@ -32,8 +32,8 @@ class MetaFormat {
   ~MetaFormat();
 
   gstFormat* Match(const char* nm);
-  const char* ShortDesc() const { return short_description_.latin1(); }
-  const char* Filter() const { return filter_.latin1(); }
+  const char* ShortDesc() const { return short_description_.toLatin1().data(); }
+  const char* Filter() const { return filter_.toLatin1().data(); }
   QString FileDialogFilterString() const;
 
  private:

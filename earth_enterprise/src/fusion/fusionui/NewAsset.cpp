@@ -14,7 +14,7 @@
 
 
 #include <khConstants.h>
-#include <Qt/qpixmap.h>
+#include <QtGui/qpixmap.h>
 #include <Qt/q3iconview.h>
 #include <autoingest/.idl/storage/AssetDefs.h>
 #include <fusionversion.h>

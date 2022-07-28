@@ -23,8 +23,8 @@
 #include <vector>
 #include <map>
 #include <Qt/qobjectdefs.h>
-#include <Qt/qstring.h>
-#include <Qt/qstringlist.h>
+#include <Qt/QtCore/qstring.h>
+#include <QtCore/qstringlist.h>
 #include "scripteditorbase.h"
 #include <gstRecord.h>
 #include <gstSourceManager.h>

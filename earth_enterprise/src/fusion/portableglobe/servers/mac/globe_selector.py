@@ -24,14 +24,14 @@
 import os
 import sys
 import time
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import portable_config
 
 
 def IsServerRunning(port):
   """Returns whether server is already running."""
   try:
-    fp = urllib.urlopen("http://localhost:%s/ping" % port)
+    fp = urllib.request.urlopen("http://localhost:%s/ping" % port)
     fp.close()
 
   #Ok, if there isn't a server running.
@@ -44,7 +44,7 @@ def IsServerRunning(port):
 def StopServer(port):
   """Stops server already running on the config port."""
   try:
-    fp = urllib.urlopen("http://localhost:%s/setup?cmd=quit" % port)
+    fp = urllib.request.urlopen("http://localhost:%s/setup?cmd=quit" % port)
     fp.close()
 
   except:
@@ -56,7 +56,7 @@ def StartServer(globe=""):
   globe = globe.replace("'", "\\'")
   cmd = ("../../../portable_server.app/Contents/MacOS/portable_server '%s' &" %
          globe)
-  print "Running %s" % cmd
+  print("Running %s" % cmd)
   os.system(cmd)
 
 
@@ -74,9 +74,9 @@ def main(argv):
   time.sleep(2)
 
   cmd = "open http://localhost:%s" % port
-  print "Running %s" % cmd
+  print("Running %s" % cmd)
   os.system(cmd)
-  print "Done."
+  print("Done.")
 
 if __name__ == "__main__":
   main(sys.argv)

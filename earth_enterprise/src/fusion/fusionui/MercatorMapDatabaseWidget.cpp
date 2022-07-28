@@ -89,7 +89,7 @@ void MercatorMapDatabaseWidget::AssembleEditRequest(
     MapDatabaseEditRequest* request) {
   if (map_project_label->text() != empty_text) {
     request->config.mapProject =
-        map_project_label->text().latin1() + kMapProjectSuffix;
+        map_project_label->text().toLatin1().data() + kMapProjectSuffix;
   } else {
     request->config.mapProject = std::string();
   }

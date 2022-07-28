@@ -22,7 +22,7 @@
 import os
 import sys
 import time
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import portable_config
 import portable_server
 
@@ -30,7 +30,7 @@ import portable_server
 def IsServerRunning(port):
   """Returns whether server is already running."""
   try:
-    fp = urllib.urlopen("http://localhost:%s/ping" % port)
+    fp = urllib.request.urlopen("http://localhost:%s/ping" % port)
     fp.close()
 
   # sOk, if there isn't a server running.
@@ -43,13 +43,13 @@ def IsServerRunning(port):
 def StopServer(port):
   """Stops server already running on the config port."""
   try:
-    fp = urllib.urlopen("http://localhost:%s/setup?cmd=quit" % port)
+    fp = urllib.request.urlopen("http://localhost:%s/setup?cmd=quit" % port)
     fp.close()
 
   except:
-    print "Unable to stop server on port %s." % port
+    print("Unable to stop server on port %s." % port)
 
-  print "Server stopped."
+  print("Server stopped.")
 
 
 # Depends on sys.argv[1] being the globe name to start (if any)
@@ -70,17 +70,17 @@ def main(argv):
       StopServer(port)
       StartServer()
   else:
-    print "Server was not running."
+    print("Server was not running.")
     StartServer()
 
   # Give the server a chance to get started.
   time.sleep(1)
 
   cmd = "start local/home.url"
-  print "Running %s" % cmd
+  print("Running %s" % cmd)
   os.system(cmd)
   time.sleep(5)
-  print "Done."
+  print("Done.")
 
 if __name__ == "__main__":
   main(sys.argv)

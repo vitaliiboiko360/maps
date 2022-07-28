@@ -13,27 +13,27 @@
 // limitations under the License.
 
 #include <memory>
-#include <qimage.h>
-#include <qpixmap.h>
-#include <qtoolbar.h>
-#include <qtoolbutton.h>
-#include <qmenu.h>
+#include <QtGui/qimage.h>
+#include <QtGui/qpixmap.h>
+#include <QtWidgets/qtoolbar.h>
+#include <QtWidgets/qtoolbutton.h>
+#include <QtWidgets/qmenu.h>
 #include <qmenubar.h>
 #include <qtextedit.h>
 #include <qfile.h>
 #include <qfiledialog.h>
-#include <qstatusbar.h>
+#include <QtWidgets/qstatusbar.h>
 #include <qmessagebox.h>
-#include <qapplication.h>
+#include <QtWidgets/qapplication.h>
 #include <Qt/q3accel.h>
 #include <qtextstream.h>
-#include <qpainter.h>
+#include <QtGui/qpainter.h>
 #include <Qt/q3paintdevicemetrics.h>
 #include <Qt/q3simplerichtext.h>
 #include <Qt/q3simplerichtext.h>
 #include <Qt/q3grid.h>
 #include <Qt/q3canvas.h>
-#include <Qt/qobject.h>
+#include <QtCore/qobject.h>
 #include  <Qt/q3filedialog.h>
 #include "fileopen.xpm"
 #include <Qt/q3mimefactory.h>
@@ -167,7 +167,7 @@ void ApplicationWindow::keyhelps()
 
 void ApplicationWindow::load( const QString &fileName )
 {
-  viewer->setFilename((char *)fileName.ascii());
+  viewer->setFilename((char *)fileName.toLatin1().data());
   setCaption(fileName);
 }
 

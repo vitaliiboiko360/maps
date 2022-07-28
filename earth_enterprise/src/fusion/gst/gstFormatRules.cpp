@@ -16,7 +16,7 @@
 #include <gstFormatRules.h>
 #include <notify.h>
 #include <vector>
-#include <qstringlist.h>
+#include <QtCore/qstringlist.h>
 #include <khFileUtils.h>
 
 gstFormatRules *theFormatRules = NULL;

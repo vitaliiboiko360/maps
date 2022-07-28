@@ -20,8 +20,8 @@
 #include <Qt/q3popupmenu.h>
 #include <Qt/qpushbutton.h>
 #include <Qt/qcursor.h>
-#include <Qt/qstringlist.h>
-#include <Qt/qtextcodec.h>
+#include <QtCore/qstringlist.h>
+#include <QtCore/qtextcodec.h>
 #include <Qt/qlayout.h>
 
 #include <khFileUtils.h>
@@ -69,10 +69,13 @@ SourceFileDialog::SourceFileDialog(QWidget* parent)
 
   codecCombo->insertItem(kh::tr("<none>"));
 
-  QTextCodec* codec;
+  QByteArray* codec;
   int count = 0;
-  for (; (codec = QTextCodec::codecForIndex(count)); ++count)
-    codecCombo->insertItem(codec->name(), 1);
+  for (codec : QTextCodec::availableCodecs())
+  {
+    codecCombo->insertItem(codec->constData(), 1);
+    ++count;
+  }
 
   PrefsConfig prefs = Preferences::getConfig();
   for (int index = 0; index < count; ++index) {

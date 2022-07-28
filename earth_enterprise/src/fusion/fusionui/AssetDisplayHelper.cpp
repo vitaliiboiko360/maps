@@ -17,7 +17,7 @@
 #include <khConstants.h>
 #include <QtGui/QMimeSource>
 #include <Qt/q3mimefactory.h>
-#include <Qt/qobject.h>
+#include <QtCore/qobject.h>
 #include <Qt/q3dragobject.h>
 #include <map>
 

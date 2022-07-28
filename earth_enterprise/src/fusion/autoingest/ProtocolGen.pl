@@ -126,7 +126,7 @@ EOF
 
     if ($static) {
 print $fh <<EOF;
-#include <qstring.h>
+#include <QtCore/qstring.h>
 
 class ${class}Proxy {
 public:
@@ -202,7 +202,7 @@ if ($proxycpp) {
     print $fh "#include \"$proxyh\"\n";
     print $fh "#include <autoingest/FusionConnection.h>\n";
     if ($static) {
-        print $fh "#include <qstring.h>\n";
+        print $fh "#include <QtCore/qstring.h>\n";
     }
     print $fh "\n\n";
 

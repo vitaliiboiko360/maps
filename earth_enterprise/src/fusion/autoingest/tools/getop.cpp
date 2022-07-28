@@ -133,7 +133,7 @@ main(int argc, char *argv[])
         else if (error.compare(SYS_MGR_BUSY_MSG.c_str()) == 0)
           outline("System Manager is busy.  Retrying in %d seconds", delay);
         else
-          notify(NFY_FATAL, "%s", error.latin1());
+          notify(NFY_FATAL, "%s", error.toLatin1().data());
       } else {
         // get the list of active keyhole processes
         std::vector<std::string> pslist;
@@ -218,7 +218,7 @@ main(int argc, char *argv[])
             outline("  %s", w->verref.c_str());
             --numlines;
             if (!w->activationError.isEmpty()) {
-              outline("     %s", w->activationError.latin1());
+              outline("     %s", w->activationError.toLatin1().data());
               --numlines;
             }
           } else {

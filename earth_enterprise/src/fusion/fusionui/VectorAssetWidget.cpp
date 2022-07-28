@@ -15,7 +15,7 @@
 #include <Qt/qobjectdefs.h>
 #include <Qt/qdatetimeedit.h>
 #include <Qt/qspinbox.h>
-#include <Qt/qtextcodec.h>
+#include <QtCore/qtextcodec.h>
 #include <Qt/q3listbox.h>
 #include <Qt/qcheckbox.h>
 #include <Qt/qmessagebox.h>

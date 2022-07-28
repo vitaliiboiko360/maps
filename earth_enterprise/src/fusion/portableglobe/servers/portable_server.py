@@ -81,7 +81,7 @@ class DbRootHandler(portable_server_base.BaseHandler):
     self.set_header("Content-Type", "application/octet-stream")
 
     if not tornado.web.globe_.Is3d():
-      print "Bad request: dbRoot from non-3D globe."
+      print("Bad request: dbRoot from non-3D globe.")
     else:
       if tornado.web.globe_.IsComposite():
         tornado.web.local_server_.LocalDbRootHandler(
@@ -100,9 +100,9 @@ class CompositeDbRootHandler(portable_server_base.BaseHandler):
     """Handle GET request for the dbroot."""
     self.set_header("Content-Type", "application/octet-stream")
     if not tornado.web.globe_.Is3d():
-      print "Bad request: dbRoot from non-3D globe."
+      print("Bad request: dbRoot from non-3D globe.")
     elif not tornado.web.globe_.IsComposite():
-      print "Bad request: composite request for glb."
+      print("Bad request: composite request for glb.")
     else:
       tornado.web.local_server_.LocalDbRootHandler(self, int(layer_id))
       self.finish()
@@ -117,7 +117,7 @@ class CompositeVectorLayerHandler(portable_server_base.BaseHandler):
     path = path.encode("ascii", "ignore")
     self.set_header("Content-Type", "text/html")
     if not tornado.web.globe_.IsComposite():
-      print "Bad request: composite request for glb."
+      print("Bad request: composite request for glb.")
     else:
       tornado.web.local_server_.LocalLayerVectorFileHandler(
           self, path, int(layer_id))
@@ -248,7 +248,7 @@ class CompositeQueryHandler(portable_server_base.BaseHandler):
     """Handle GET request for JSON file for plugin."""
     if self.request.arguments["request"][0] == "Json":
       self.set_header("Content-Type", "text/plain; charset=utf-8")
-      if ("is2d" in self.request.arguments.keys() and
+      if ("is2d" in list(self.request.arguments.keys()) and
           self.request.arguments["is2d"][0] == "t"):
         tornado.web.local_server_.LocalJsonHandler(self, True)
       else:
@@ -282,7 +282,7 @@ class CompositeQueryHandler(portable_server_base.BaseHandler):
 
     else:
       self.set_header("Content-Type", "text/plain")
-      print "Unknown query request: ", self.request.uri
+      print("Unknown query request: ", self.request.uri)
 
     self.finish()
 
@@ -301,7 +301,7 @@ class QueryHandler(portable_server_base.BaseHandler):
       self.set_header("Content-Type", "text/plain; charset=utf-8")
       # TODO: Need way to distinguish 2d/3d for
       # TODO: composite with both.
-      if ("is2d" in self.request.arguments.keys() and
+      if ("is2d" in list(self.request.arguments.keys()) and
           self.request.arguments["is2d"][0] == "t"):
         tornado.web.local_server_.LocalJsonHandler(self, True, json_version)
       else:
@@ -345,7 +345,7 @@ class QueryHandler(portable_server_base.BaseHandler):
 
     else:
       self.set_header("Content-Type", "text/plain")
-      print "Unknown query request: ", self.request.uri
+      print("Unknown query request: ", self.request.uri)
 
     self.finish()
 

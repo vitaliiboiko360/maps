@@ -16,11 +16,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <Qt/qpainter.h>
+#include <QtGui/qpainter.h>
 #include <Qt/qinputdialog.h>
 #include <Qt/qcombobox.h>
-#include <Qt/qstatusbar.h>
-#include <Qt/qapplication.h>
+#include <QtWidgets/qstatusbar.h>
+#include <QtWidgets/qapplication.h>
 #include <Qt/qlayout.h>
 #include <Qt/qlcdnumber.h>
 #include <Qt/qspinbox.h>
@@ -337,7 +337,7 @@ void MainWindow::launchHelpManual() {
   // ensure shell is bourne so we can redirect stderr
   setenv("SHELL", "/bin/sh", 1);
   QString cmd = browser + " " + doc + " 2> /dev/null &";
-  system(cmd.latin1());
+  system(cmd.toLatin1().data());
 }
 
 void MainWindow::helpAbout() {
@@ -369,9 +369,9 @@ void MainWindow::show() {
     file.close();
   }
 
-  if (khExists(Preferences::filepath("mainwindow.layout").latin1())) {
+  if (khExists(Preferences::filepath("mainwindow.layout").toLatin1().data())) {
     LayoutPersist lp;
-    if (lp.Load(Preferences::filepath("mainwindow.layout").latin1())) {
+    if (lp.Load(Preferences::filepath("mainwindow.layout").toLatin1().data())) {
       resize(lp.width, lp.height);
       move(lp.xpos, lp.ypos);
     }
@@ -434,7 +434,7 @@ gstStatus MainWindow::updateImageLayers() {
 
   bool is_mercator_imagery;
   gstTextureGuard texture =
-      txmgr->NewTextureFromPath(std::string(texpath.latin1()),
+      txmgr->NewTextureFromPath(std::string(texpath.toLatin1().data()),
                                 &is_mercator_imagery);
   QString proj_msg(
       (is_mercator_imagery && !Preferences::getConfig().isMercatorPreview) ?
@@ -451,7 +451,7 @@ gstStatus MainWindow::updateImageLayers() {
     warning->show();
 
     texture = txmgr->NewTextureFromPath(std::string(
-        Preferences::getConfig().GetDefaultBackgroundPath().latin1()),
+        Preferences::getConfig().GetDefaultBackgroundPath().toLatin1().data()),
         &is_mercator_imagery);
 
     if (!texture || !txmgr->AddBaseTexture(texture) ||
@@ -475,7 +475,7 @@ void MainWindow::fileOpen() {
 void MainWindow::fileDragOpen(const QString& str) {
   QString modstr = ProjectManager::CleanupDropText(str);
 
-  preview_project_manager_->addLayers(modstr.latin1(), NULL);
+  preview_project_manager_->addLayers(modstr.toLatin1().data(), NULL);
 }
 
 void MainWindow::closeEvent(QCloseEvent* event) {
@@ -518,7 +518,7 @@ void MainWindow::saveScreenLayout() {
   lp.ypos = y();
   lp.showme = true;
   lp.currentProject = 0;        // obsolete
-  lp.Save(Preferences::filepath("mainwindow.layout").latin1());
+  lp.Save(Preferences::filepath("mainwindow.layout").toLatin1().data());
 }
 
 //------------------------------------------------------------------------------

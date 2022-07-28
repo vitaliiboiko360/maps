@@ -18,7 +18,7 @@
 #include <functional>
 #include <algorithm>
 
-#include <qstringlist.h>
+#include <QtCore/qstringlist.h>
 
 #include "autoingest/.idl/storage/VectorProjectConfig.h"
 #include "common/RuntimeOptions.h"
@@ -159,7 +159,7 @@ VectorProjectConfig::EnsureFolderExists(const QString &folder) {
   // didn't find a match, let's try to make one
   QString delim = QString("|");
   QString parent;
-  if (folder.find(delim) != -1) {
+  if (folder.indexOf(delim) != -1) {
     parent = folder.section(delim, 0, -2);
     EnsureFolderExists(parent);
   }

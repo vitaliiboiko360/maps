@@ -137,7 +137,7 @@ main(int argc, char *argv[]) {
           QString error;
           if (!khAssetManagerProxy::VectorProjectEdit(request, error)) {
             notify(NFY_WARN, "Unable to save project: %s", project.c_str());
-            notify(NFY_FATAL, "  REASON: %s", error.latin1());
+            notify(NFY_FATAL, "  REASON: %s", error.toLatin1().data());
           }
         }
         return 0;

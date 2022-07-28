@@ -19,7 +19,7 @@
 #define KHSRC_FUSION_FUSIONUI_FILEHISTORY_H__
 
 #include <qpushbutton.h>
-#include <qstringlist.h>
+#include <QtCore/qstringlist.h>
 #include <fusionui/.idl/filehistory.h>
 
 class FileHistory : public QPushButton {

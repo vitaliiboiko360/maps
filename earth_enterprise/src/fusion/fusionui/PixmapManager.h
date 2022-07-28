@@ -21,7 +21,7 @@
 
 #include <khHashTable.h>
 #include <Qt/qglobal.h>
-#include <Qt/qimage.h>
+#include <QtGui/qimage.h>
 #include <map>
 class gstIcon;
 class QPixmap;

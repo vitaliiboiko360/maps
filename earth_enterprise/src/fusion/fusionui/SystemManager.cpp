@@ -17,10 +17,10 @@
 #include "SystemListener.h"
 #include <autoingest/khAssetManagerProxy.h>
 #include <notify.h>
-#include <Qt/qapplication.h>
+#include <QtWidgets/qapplication.h>
 #include <Qt/q3listbox.h>
 #include <Qt/qtooltip.h>
-#include <Qt/qpainter.h>
+#include <QtGui/qpainter.h>
 #include <Qt/qpen.h>
 using QListBoxText = Q3ListBoxText;
 using QListBoxItem = Q3ListBoxItem;

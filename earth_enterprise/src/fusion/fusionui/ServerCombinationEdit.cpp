@@ -21,7 +21,7 @@
 #include <qlineedit.h>
 #include <qmessagebox.h>
 #include <qpushbutton.h>
-#include <qurl.h>
+#include <QtCore/qurl.h>
 #include "khException.h"
 #include <autoingest/.idl/storage/AssetDefs.h>
 #include "fusion/fusionui/geGuiAuth.h"
@@ -99,7 +99,7 @@ void ServerCombinationEdit::StreamUrlTextChanged(const QString& url_text) {
   // Check whether scheme in URL is 'https' and set enabled for SSL option
   // controls.
   QUrl url(url_text);
-  bool is_https = (url.protocol() == QString("https"));
+  bool is_https = (url.scheme() == QString("https"));
   UpdateSslOptionControls(is_https);
 }
 

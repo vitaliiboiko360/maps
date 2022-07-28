@@ -23,12 +23,12 @@
 #include <cmath>
 #include <algorithm>
 
-#include <qdatetime.h>
-#include <qstringlist.h>
-#include <qimage.h>
+#include <QtCore/qdatetime.h>
+#include <QtCore/qstringlist.h>
+#include <QtGui/qimage.h>
 #include <qfile.h>
 #include <qtextstream.h>
-#include <qdir.h>
+#include <QtCore/qdir.h>
 
 #include "common/khInsetCoverage.h"
 #include "common/khHashTable.h"
@@ -381,7 +381,7 @@ void gstLayer::GetSiteLabels(const gstDrawState& state,
   QString error;
   if (!TryPopulateJSDisplayBundle(&jsbundle, &error)) {
     notify(NFY_WARN, "Error Prepping JS for labels: %s",
-           (const char *)error.utf8());
+           (const char *)error.toUtf8());
     site_sets->resize(0);
     return;
   }
@@ -613,7 +613,7 @@ void gstLayer::BuildSetMgr::Update(unsigned int lev, bool need_lod) {
 bool gstLayer::BuildSetMgr::DumpLODTable(const QString& path) {
   QFile file(path);
   if (!file.open(IO_WriteOnly)) {
-    notify(NFY_WARN, "Unable to save LOD Table: %s", file.name().latin1());
+    notify(NFY_WARN, "Unable to save LOD Table: %s", file.name().toLatin1().data());
     return false;
   }
 
@@ -650,7 +650,7 @@ bool gstLayer::ExportStreamPackets(geFilePool &file_pool,
   QString error;
   if (!TryPopulateJSDisplayBundle(&jsbundle, &error)) {
     notify(NFY_WARN, "Error Prepping JS for export: %s",
-           (const char *)error.utf8());
+           (const char *)error.toUtf8());
     return false;
   }
 

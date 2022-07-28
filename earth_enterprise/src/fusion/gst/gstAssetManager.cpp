@@ -21,7 +21,7 @@
 #include <fnmatch.h>
 #include <fcntl.h>
 
-#include <qstring.h>
+#include <QtCore/qstring.h>
 
 #include <gstAssetManager.h>
 #include <gstSource.h>
@@ -103,7 +103,7 @@ bool gstAssetManager::ImportVector(const std::string& folder,
     notify(NFY_WARN,
            "Error importing vector asset named %s into directory %s\n%s\n",
            asset.assetname.c_str(), folder.c_str(),
-           msg.latin1());
+           msg.toLatin1().data());
     return false;
   }
 
@@ -122,7 +122,7 @@ bool gstAssetManager::ImportRaster(const std::string& folder,
     notify(NFY_WARN,
            "Error importing raster asset named %s into directory %s\n%s\n",
            asset.assetname.c_str(), folder.c_str(),
-           msg.latin1());
+           msg.toLatin1().data());
     return false;
   }
 

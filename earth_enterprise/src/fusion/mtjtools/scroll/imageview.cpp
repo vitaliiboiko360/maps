@@ -16,10 +16,10 @@
 //      Qt-based Image View widget
 //
 
-#include <qimage.h>
-#include <qbitmap.h>
-#include <qpainter.h>
-#include <qstatusbar.h>
+#include <QtGui/qimage.h>
+#include <QtGui/qbitmap.h>
+#include <QtGui/qpainter.h>
+#include <QtWidgets/qstatusbar.h>
 #include <qcursor.h>
 #include <QtGui/QKeyEvent>
 #include "imageview.h"

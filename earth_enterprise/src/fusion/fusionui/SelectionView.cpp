@@ -22,7 +22,7 @@
 #include <Qt/qcursor.h>
 #include <Qt/qmessagebox.h>
 #include <Qt/qfiledialog.h>
-#include <Qt/qapplication.h>
+#include <QtWidgets/qapplication.h>
 #include <Qt/qclipboard.h>
 #include <Qt/q3header.h>
 #include <khFileUtils.h>

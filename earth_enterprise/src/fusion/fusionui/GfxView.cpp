@@ -15,19 +15,19 @@
 // limitations under the License.
 
 #include <Qt/qglobal.h>
-#include <Qt/qobject.h>
+#include <QtCore/qobject.h>
 #include <Qt/qcursor.h>
 #include <Qt/qtimer.h>
 #include <Qt/q3dragobject.h>
 #include <Qt/qmessagebox.h>
-#include <Qt/qbitmap.h>
+#include <QtGui/qbitmap.h>
 #include <Qt/qcoreapplication.h>
 #include <gstTexture.h>
 #include <gstTextureManager.h>
 #include <notify.h>
 #include <gstHistogram.h>
 #include <font.h>
-#include <Qt/qpainter.h>
+#include <QtGui/qpainter.h>
 #include <khTimer.h>
 #include <gstIconManager.h>
 #include <khTileAddr.h>
@@ -490,7 +490,7 @@ void GfxView::keyPressEvent(QKeyEvent* e) {
     return;
   }
 
-  switch (e->ascii()) {
+  switch (e->toLatin1().data()) {
     case 3:    // ctrl-c
       if (Preferences::GlobalEnableAll)  {
         TOGGLEstate_(ShowCullFrust);

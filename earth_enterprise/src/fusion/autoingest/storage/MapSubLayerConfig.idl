@@ -16,8 +16,8 @@
 #include <cstdint>
 #include <string>
 #include <vector>
-#include <qstring.h>
-#include <qcolor.h>
+#include <QtCore/qstring.h>
+#include <QtGui/qcolor.h>
 #include <khConstants.h>
 #include <khMetaData.h>
 #include <geRange.h>

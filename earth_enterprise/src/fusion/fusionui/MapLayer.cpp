@@ -19,8 +19,8 @@
 #include <utility>
 
 #include <Qt/qglobal.h>
-#include <Qt/qobject.h>
-#include <Qt/qcolor.h>
+#include <QtCore/qobject.h>
+#include <QtGui/qcolor.h>
 #include <Qt/qcolordialog.h>
 #include <Qt/qcombobox.h>
 #include <Qt/q3header.h>
@@ -29,20 +29,20 @@
 #include <Qt/qlineedit.h>
 #include <Qt/q3listbox.h>
 #include <Qt/qmessagebox.h>
-#include <Qt/qpainter.h>
+#include <QtGui/qpainter.h>
 #include <Qt/q3popupmenu.h>
 #include <Qt/qpushbutton.h>
 #include <Qt/qspinbox.h>
 #include <Qt/qtextedit.h>
 #include <Qt/q3widgetstack.h>
 #include <Qt/qgroupbox.h>
-#include <Qt/qapplication.h>
+#include <QtWidgets/qapplication.h>
 #include <Qt/qtooltip.h>
 #include <Qt/qcheckbox.h>
-#include <Qt/qobject.h>
+#include <QtCore/qobject.h>
 #include <SkBitmap.h>
 #include <SkImageDecoder.h>
-#include <Qt/qstring.h>
+#include <Qt/QtCore/qstring.h>
 #include <Qt/q3filedialog.h>
 
 
@@ -916,7 +916,7 @@ void MapLayerWidget::ImportTemplate() {
   // Vector syntax so as to be able to call CheckFontSanity
   std::vector<MapSubLayerConfig> template_cfg_vector(1);
   MapSubLayerConfig& template_cfg = template_cfg_vector[0];
-  if (!template_cfg.Load(fd.selectedFile().latin1())) {
+  if (!template_cfg.Load(fd.selectedFile().toLatin1().data())) {
     QMessageBox::critical(this, kh::tr("Error"),
           QString(kh::tr("Unable to open Fusion Map Template file:\n\n%1")).
           arg(fd.selectedFile()),
@@ -1408,7 +1408,7 @@ void MapLayerWidget::AssembleEditRequest(MapLayerEditRequest* request) {
   legendManager.SyncToConfig();
   if (request->assetname != AssetBase::untitled_name.toUtf8().constData()) {
     const QString &legend_name = legend_config_.defaultLocale.name.GetValue();
-    if (legend_name.stripWhiteSpace().isEmpty()) {
+    if (legend_name.trimmed().isEmpty()) {
       throw khException(kh::tr("Missing legend name"));
     }
   }

@@ -47,7 +47,7 @@ def _swig_getattr(self,class_type,name):
     if (name == "thisown"): return self.this.own()
     method = class_type.__swig_getmethods__.get(name,None)
     if method: return method(self)
-    raise AttributeError,name
+    raise AttributeError(name)
 
 def _swig_repr(self):
     try: strthis = "proxy of " + self.this.__repr__()
@@ -56,7 +56,7 @@ def _swig_repr(self):
 
 import types
 try:
-    _object = types.ObjectType
+    _object = object
     _newclass = 1
 except AttributeError:
     class _object : pass
@@ -210,7 +210,7 @@ class PacketBundle(_object):
     __setattr__ = lambda self, name, value: _swig_setattr(self, PacketBundle, name, value)
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, PacketBundle, name)
-    def __init__(self): raise AttributeError, "No constructor defined"
+    def __init__(self): raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
     __swig_destroy__ = _fileunpacker.delete_PacketBundle
     __del__ = lambda self : None;

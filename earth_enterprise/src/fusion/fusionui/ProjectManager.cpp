@@ -22,10 +22,10 @@
 #include <assert.h>
 #include <functional>
 
-#include <Qt/qapplication.h>
+#include <QtWidgets/qapplication.h>
 #include <Qt/qpushbutton.h>
 #include <Qt/qcursor.h>
-#include <Qt/qpainter.h>
+#include <QtGui/qpainter.h>
 #include <Qt/q3popupmenu.h>
 using QPopupMenu = Q3PopupMenu;
 #include <Qt/qprogressdialog.h>
@@ -33,7 +33,7 @@ using QPopupMenu = Q3PopupMenu;
 #include <Qt/q3header.h>
 #include <Qt/qinputdialog.h>
 #include <Qt/qthread.h>
-#include <Qt/qstringlist.h>
+#include <QtCore/qstringlist.h>
 #include <Qt/qevent.h>
 #include <Qt/qlayout.h>
 #include <Qt/q3vgroupbox.h>
@@ -1237,8 +1237,8 @@ void ProjectManager::exportDisplayTemplate(gstLayer* layer) {
   // restore previous layout
   //
   TemplateImportLayout layout;
-  if (khExists(Preferences::filepath("templateimport.layout").latin1())) {
-    if (layout.Load(Preferences::filepath("templateimport.layout").latin1())) {
+  if (khExists(Preferences::filepath("templateimport.layout").toLatin1().data())) {
+    if (layout.Load(Preferences::filepath("templateimport.layout").toLatin1().data())) {
       fd.resize(layout.width, layout.height);
       fd.setDir(layout.lastDirectory);
     }
@@ -1257,14 +1257,14 @@ void ProjectManager::exportDisplayTemplate(gstLayer* layer) {
   layout.width = fd.width();
   layout.height = fd.height();
   layout.lastDirectory = fd.dirPath();
-  layout.Save(Preferences::filepath("templateimport.layout").latin1());
+  layout.Save(Preferences::filepath("templateimport.layout").toLatin1().data());
 
   QString khdsp(fd.selectedFile());
   if (!khdsp.endsWith(".khdsp"))
     khdsp += QString(".khdsp");
 
   LayerConfig cfg = layer->GetConfig();
-  if (!cfg.Save(khdsp.latin1())) {
+  if (!cfg.Save(khdsp.toLatin1().data())) {
     QMessageBox::critical(this, "Error",
                           tr("Unable to save file:") + khdsp ,
                           tr("OK"), 0, 0, 0);
@@ -1311,8 +1311,8 @@ void ProjectManager::importDisplayTemplate(QCheckListItem* item) {
   // restore previous layout
   //
   TemplateImportLayout layout;
-  if (khExists(Preferences::filepath("templateimport.layout").latin1())) {
-    if (layout.Load(Preferences::filepath("templateimport.layout").latin1())) {
+  if (khExists(Preferences::filepath("templateimport.layout").toLatin1().data())) {
+    if (layout.Load(Preferences::filepath("templateimport.layout").toLatin1().data())) {
       fd.resize(layout.width, layout.height);
       fd.setDir(layout.lastDirectory);
     }
@@ -1327,10 +1327,10 @@ void ProjectManager::importDisplayTemplate(QCheckListItem* item) {
   layout.width = fd.width();
   layout.height = fd.height();
   layout.lastDirectory = fd.dirPath();
-  layout.Save(Preferences::filepath("templateimport.layout").latin1());
+  layout.Save(Preferences::filepath("templateimport.layout").toLatin1().data());
 
   LayerConfig template_cfg;
-  if (!template_cfg.Load(fd.selectedFile().latin1())) {
+  if (!template_cfg.Load(fd.selectedFile().toLatin1().data())) {
     QMessageBox::critical(this, tr("Error"),
                           QString(tr("Unable to open Display Rule Template file:\n\n%1")).
                           arg(fd.selectedFile()),
@@ -1447,7 +1447,7 @@ void ProjectManager::FileOpen() {
     QString name = (fi.fileName() == kHeaderXmlFile.c_str()) ?
                    fi.dirPath(true) : fi.absFilePath();
 
-    addLayers(name.latin1(), codec.latin1());
+    addLayers(name.toLatin1().data(), codec.toLatin1().data());
   }
 
   progress.setValue(100);
@@ -1549,7 +1549,7 @@ void ProjectManager::addLayer() {
   if (!chooser.getFullPath(newpath))
     return;
 
-  AddAssetLayer(newpath.latin1());
+  AddAssetLayer(newpath.toLatin1().data());
 }
 
 
@@ -2280,7 +2280,7 @@ void ProjectManager::contentsDropEvent(QDropEvent* e) {
       Asset asset(AssetDefs::FilenameToAssetPath(it->toUtf8().constData()));
       AssetVersion ver(asset->GetLastGoodVersionRef());
       if (ver) {
-         AddAssetLayer(it->latin1());
+         AddAssetLayer(it->toLatin1().data());
       } else {
         std::string san = shortAssetName(*it);
         nogoodversions += QString("   " )
@@ -2303,14 +2303,14 @@ void ProjectManager::contentsDropEvent(QDropEvent* e) {
 
     for (QStringList::Iterator it = files.begin(); it != files.end(); ++it) {
       QString fname = CleanupDropText(*it);
-      addLayers(fname.latin1(), NULL);
+      addLayers(fname.toLatin1().data(), NULL);
     }
   }
 }
 
 QString ProjectManager::CleanupDropText(const QString &text) {
   // cleanup string to be a standard file name
-  QString modstr = QString(text).stripWhiteSpace();
+  QString modstr = QString(text).trimmed();
   if (modstr.startsWith("file:"))
     modstr.remove(0, 5);
   while (modstr.startsWith("//"))

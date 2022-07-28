@@ -206,7 +206,7 @@ main(int argc, char *argv[]) {
       QString error;
       if (!khAssetManagerProxy::MapProjectEdit(req, error)) {
         notify(NFY_WARN, "Unable to save project: %s", projectref.c_str());
-        notify(NFY_FATAL, "  REASON: %s", error.latin1());
+        notify(NFY_FATAL, "  REASON: %s", error.toLatin1().data());
       }
     }
   } catch (const std::exception &e) {

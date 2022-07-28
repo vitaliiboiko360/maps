@@ -16,7 +16,7 @@
 
 #include <gstRecord.h>
 #include <gstGeode.h>
-#include <qtextcodec.h>
+#include <QtCore/qtextcodec.h>
 #include <gstJobStats.h>
 
 // ----------------------------------------------------------------------------
@@ -278,8 +278,8 @@ bool gstRecordImpl::ValidateEncoding() const {
 gstRecordFormatter::gstRecordFormatter(
     const QString& format, gstHeaderHandle &hdr)
     : format_(format) {
-  const QChar vstart(0xab);  // opening symbol '«'
-  const QChar vend(0xbb);    // closing symbol '»'
+  const QChar vstart(0xab);  // opening symbol 'ï¿½'
+  const QChar vend(0xbb);    // closing symbol 'ï¿½'
 
   int varpos = 0;
   while ((varpos = format_.find(vstart, varpos)) != -1) {

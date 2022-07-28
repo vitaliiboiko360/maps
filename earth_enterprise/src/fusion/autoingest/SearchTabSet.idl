@@ -61,7 +61,7 @@ class SearchTabSet
       // missing file is not an error
       return true;
     }
-    bool retval = Load(filename.ascii());
+    bool retval = Load(filename.toLatin1().data());
     return retval;
   }
 

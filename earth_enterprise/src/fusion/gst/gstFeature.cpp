@@ -94,7 +94,7 @@ gstRecordHandle gstFeatureConfigs::Expand(gstRecordHandle src_rec,
         if (!jsbundle.cx->TryExecuteScript
             (jsbundle.displayJS[filterId].roadLabelScript, outval, error)) {
           notify(NFY_WARN, "Error executing JS: %s",
-                 (const char *)error.utf8());
+                 (const char *)error.toUtf8());
           outval = QString();
           return gstRecordHandle();
         }

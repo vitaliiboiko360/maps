@@ -19,7 +19,7 @@
 #include <Qt3Support/Q3CheckListItem>
 #include <Qt/qevent.h>
 #include <Qt/qmessagebox.h>
-#include <Qt/qpixmap.h>
+#include <QtGui/qpixmap.h>
 #include <Qt/qmime.h>
 #include <Qt/qlabel.h>
 #include <Qt/q3filedialog.h>
@@ -1046,7 +1046,7 @@ void FeatureEditor::KeyPress(QKeyEvent* event) {
     // delete
     printf("delete\n");
   } else {
-    printf("key:%d, ascii:%d\n", event->key(), event->ascii());
+    printf("key:%d, ascii:%d\n", event->key(), event->toLatin1().data());
   }
 #endif
 }

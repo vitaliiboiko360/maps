@@ -51,10 +51,10 @@ void RasterDbrootGenerator::EmitNestedLayers(void) {
 
   // get localized strings for our current locale
   LegendLocale legend_locale = layer_config.legend_.GetLegendLocale(locale_);
-  std::string display_name((const char*)legend_locale.name.GetValue().utf8());
+  std::string display_name((const char*)legend_locale.name.GetValue().toUtf8());
   std::string description(
-      (const char*)legend_locale.desc.GetValue().section('\n', 0, 0).utf8());
-  std::string look_at((const char*)legend_locale.lookAt.GetValue().utf8());
+      (const char*)legend_locale.desc.GetValue().section('\n', 0, 0).toUtf8());
+  std::string look_at((const char*)legend_locale.lookAt.GetValue().toUtf8());
 
   keyhole::dbroot::NestedFeatureProto* nested = outproto_.add_nested_feature();
   nested->set_channel_id(layer_config.channel_id_);

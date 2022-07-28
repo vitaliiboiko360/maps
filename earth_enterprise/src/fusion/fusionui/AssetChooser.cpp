@@ -15,14 +15,14 @@
 
 #include "fusion/fusionui/AssetChooser.h"
 
-#include <Qt/qstring.h>
+#include <Qt/QtCore/qstring.h>
 #include <Qt/qlineedit.h>
 #include <Qt/qpushbutton.h>
 #include <Qt/qcombobox.h>
 #include <Qt/qmessagebox.h>
 #include <Qt/q3iconview.h>
 #include <Qt/qinputdialog.h>
-#include <Qt/qapplication.h>
+#include <QtWidgets/qapplication.h>
 #include <Qt/qcoreevent.h>
 #include "fusion/gst/gstAssetManager.h"
 
@@ -200,18 +200,18 @@ AssetChooser::AssetChooser(
 }
 
 void AssetChooser::RestorePreviousDir(const AssetDisplayHelper& adh) {
-  if (khExists(Preferences::filepath("assetchooser.xml").latin1())) {
+  if (khExists(Preferences::filepath("assetchooser.xml").toLatin1().data())) {
     if (chooser_history_.Load(
-            Preferences::filepath("assetchooser.xml").latin1())) {
+            Preferences::filepath("assetchooser.xml").toLatin1().data())) {
       QString dir = chooser_history_.FindDir(adh.GetSortKey());
       if (!dir.isEmpty()) {
         QString path = AssetDefs::AssetRoot().c_str();
         path += "/";
         path += dir;
-        if (khDirExists(path.latin1())) {
+        if (khDirExists(path.toLatin1().data())) {
           updateView(gstAssetFolder(path));
         } else {
-          notify(NFY_WARN, "Invalid path in history: %s", path.latin1());
+          notify(NFY_WARN, "Invalid path in history: %s", path.toLatin1().data());
         }
       }
     }
@@ -222,7 +222,7 @@ void AssetChooser::chooseFilter(const QString& str) {
   if (str == "All") {
     match_string_.clear();
   } else {
-    match_string_ = str.latin1();
+    match_string_ = str.toLatin1().data();
   }
 
   updateView(current_folder_);
@@ -363,7 +363,7 @@ void AssetChooser::accept() {
   // save directory for this type/subtype
   AssetDisplayHelper adh(type_, subtype_);
   chooser_history_.SetDir(adh.GetSortKey(), current_folder_.relativePath());
-  chooser_history_.Save(Preferences::filepath("assetchooser.xml").latin1());
+  chooser_history_.Save(Preferences::filepath("assetchooser.xml").toLatin1().data());
 
   AssetChooserBase::accept();
 }
@@ -379,7 +379,7 @@ bool AssetChooser::getFullPath(QString& fullpath) const {
   QString errormsg;
   std::string fullassetname;
   try {
-    fullassetname = AssetDefs::NormalizeAssetName(path.latin1(), type_,
+    fullassetname = AssetDefs::NormalizeAssetName(path.toLatin1().data(), type_,
                                                   subtype_);
   } catch(const std::exception& e) {
     errormsg = QString::fromUtf8(e.what());
@@ -474,7 +474,7 @@ void AssetChooser::NewDirectory() {
     QString newdir(current_folder_.fullPath() + "/" + text);
     QString error;
     if (!theAssetManager->makeDir
-        (AssetDefs::FilenameToAssetPath(newdir.latin1()), error)) {
+        (AssetDefs::FilenameToAssetPath(newdir.toLatin1().data()), error)) {
       QMessageBox::critical(this, tr("Error"),
                             error, tr("OK"), QString::null, QString::null, 0);
     } else {

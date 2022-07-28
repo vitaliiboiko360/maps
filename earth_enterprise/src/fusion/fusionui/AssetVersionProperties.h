@@ -20,7 +20,7 @@
 
 #include <Qt/qglobal.h>
 #include <Qt/q3listview.h>
-#include <Qt/qobject.h>
+#include <QtCore/qobject.h>
 #include <string>
 #include <map>
 #include "assetversionpropertiesbase.h"

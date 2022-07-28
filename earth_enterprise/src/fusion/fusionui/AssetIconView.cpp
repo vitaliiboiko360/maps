@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#include <Qt/qimage.h>
-#include <Qt/qstringlist.h>
+#include <QtGui/qimage.h>
+#include <QtCore/qstringlist.h>
 #include <assert.h>
 #include <Qt/qabstractbutton.h>
 #include <Qt/q3mimefactory.h>

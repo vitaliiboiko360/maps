@@ -14,7 +14,7 @@
 
 // TODO: High-level file comment.
 ////////////////////////////////////////////////////////////////////////////////
-#include <qapplication.h>
+#include <QtWidgets/qapplication.h>
 #include <string>
 #include <khGetopt.h>
 #include <khFileUtils.h>

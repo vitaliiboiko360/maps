@@ -79,7 +79,7 @@ void LocaleManager::NewLocale() {
                           tr("Locale name (eg. fr, de, it, fr_CA):"),
                           QLineEdit::Normal,
                           new_locale, &ok, this);
-    new_locale = new_locale.stripWhiteSpace();
+    new_locale = new_locale.trimmed();
     if (!ok || new_locale.isEmpty())
       return;
 
@@ -113,7 +113,7 @@ void LocaleManager::ModifyLocale() {
                           tr("Locale name:"),
                           QLineEdit::Normal,
                           new_locale, &ok, this);
-    new_locale = new_locale.stripWhiteSpace();
+    new_locale = new_locale.trimmed();
 
     if (!ok || new_locale.isEmpty() || new_locale == orig_locale)
       return;

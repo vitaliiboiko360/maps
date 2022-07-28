@@ -55,7 +55,7 @@ def main():
     msg = "Unknown command: %s" % cmd
 
   if msg:
-    print msg
+    print(msg)
 
 if __name__ == "__main__":
   main()

@@ -66,7 +66,7 @@ def main():
 
 
 def Die(msg):
-  print >> sys.stderr, msg
+  print(msg, file=sys.stderr)
   exit(1)
 
 
@@ -148,19 +148,19 @@ def VersionConfigFile(assetroot, version):
 
 def MyExec(cmd):
   if not opt_dryrun:
-    print ' '.join(cmd)
+    print(' '.join(cmd))
     subprocess.check_call(cmd)
   else:
-    print 'dry run:', ' '.join(cmd)
+    print('dry run:', ' '.join(cmd))
 
 
 def Usage(msg):
-  if msg: print msg
-  print 'usage: gecleanupfor50.py [--help] [--dryrun]'
-  print '   Will clean up old versions of assets, projects and databases'
-  print '   that are not compatible with Fusion 5.0'
-  print ''
-  print '   --dryrun just reports what would have been done'
+  if msg: print(msg)
+  print('usage: gecleanupfor50.py [--help] [--dryrun]')
+  print('   Will clean up old versions of assets, projects and databases')
+  print('   that are not compatible with Fusion 5.0')
+  print('')
+  print('   --dryrun just reports what would have been done')
 
 
 if __name__ == '__main__':

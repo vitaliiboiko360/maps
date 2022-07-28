@@ -21,7 +21,7 @@
 #define FUSION_FUSIONUI_WIDGETCONTROLLERS_H__
 
 #include <Qt/qobjectdefs.h>
-#include <Qt/qobject.h>
+#include <QtCore/qobject.h>
 #include <khGuard.h>
 #include <geRange.h>
 #include <Qt/qcombobox.h>

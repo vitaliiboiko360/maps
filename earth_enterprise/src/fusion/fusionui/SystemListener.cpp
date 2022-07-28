@@ -22,7 +22,7 @@ For history see CVS log (cvs log SystemListener.cpp -or- Emacs Ctrl-xvl).
 ******************************************************************************/
 #include "SystemListener.h"
 #include <notify.h>
-#include <Qt/qapplication.h>
+#include <QtWidgets/qapplication.h>
 #include "AssetManager.h"
 
 

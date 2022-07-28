@@ -18,7 +18,7 @@
 import os
 
 # Beginning template for search results.
-kml_start_template = """<?xml version="1.0" encoding="latin1"?>
+kml_start_template = """<?xml version="1.0" encoding="toLatin1().data()"?>
 <kml xmlns="http://earth.google.com/kml/2.1">
     <Folder>
         <name><![CDATA[Grouped search results : %s]]></name>

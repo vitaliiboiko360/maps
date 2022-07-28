@@ -103,7 +103,7 @@ void PromptUserAndFixUniqueIds(bool noprompt) {
     "are in use.\n"
     "Depending on the size of your asset root, this could take a while.\n")
                     .arg(AssetDefs::AssetRoot().c_str());
-    fprintf(stderr, "%s", (const char *)msg.utf8());
+    fprintf(stderr, "%s", (const char *)msg.toUtf8());
     if (!geprompt::confirm(kh::tr("Proceed with scan"), 'Y')) {
       throw khException(kh::tr("Aborted by user"));
     }

@@ -14,7 +14,7 @@
 // limitations under the License.
 
 
-#include <qstringlist.h>
+#include <QtCore/qstringlist.h>
 #include <qcombobox.h>
 #include <qlayout.h>
 #include <qlineedit.h>
@@ -67,12 +67,12 @@ void LabelFormat::insertField(const QString &str) {
 
   if (mode_ == SingleLine) {
     lineEdit->blockSignals(true);
-    lineEdit->insert(QString("«%1»").arg(str));
+    lineEdit->insert(QString("ï¿½%1ï¿½").arg(str));
     lineEdit->setFocus();
     lineEdit->blockSignals(false);
   } else {
     textEdit->blockSignals(true);
-    textEdit->insert(QString("«%1»").arg(str));
+    textEdit->insert(QString("ï¿½%1ï¿½").arg(str));
     textEdit->setFocus();
     textEdit->blockSignals(false);
   }

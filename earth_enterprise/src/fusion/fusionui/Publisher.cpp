@@ -22,7 +22,7 @@
 #include <Qt/qmessagebox.h>
 #include <Qt/q3header.h>
 #include <Qt/qpushbutton.h>
-#include <Qt/qurl.h>
+#include <QtCore/qurl.h>
 #include "khException.h"
 #include "fusion/fusionui/ServerCombinationEdit.h"
 
@@ -59,7 +59,7 @@ void Publisher::SetRow(int row, const ServerCombination& c) {
   server_combination_table->setText(row, 0, c.nickname);
   server_combination_table->setText(row, 1, c.stream.url.c_str());
   QUrl url(c.stream.url.c_str());
-  bool is_https = (url.protocol() == QString("https"));
+  bool is_https = (url.scheme() == QString("https"));
   // Display SSL options only for URLs with https-scheme.
   if (is_https) {
     server_combination_table->setText(row, 2, c.stream.cacert_ssl.c_str());

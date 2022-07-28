@@ -30,7 +30,7 @@ using QPopupMenu = Q3PopupMenu;
 #include <Qt/qmessagebox.h>
 #include <Qt/qgroupbox.h>
 #include <Qt/qlineedit.h>
-#include <Qt/qobject.h>
+#include <QtCore/qobject.h>
 #include <Qt/q3listview.h>
 using QListViewItem = Q3ListViewItem;
 class AssetBase;

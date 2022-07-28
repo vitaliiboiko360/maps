@@ -14,7 +14,7 @@
 
 
 #include <vector>
-#include <qstring.h>
+#include <QtCore/qstring.h>
 
 
 class ServerConfig {

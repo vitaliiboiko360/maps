@@ -20,10 +20,10 @@ import logging
 import os
 import posixpath
 import re
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
-import errors
-import utils
+from . import errors
+from . import utils
 
 # It is used for debugging.
 # logging.getLogger().setLevel(level=logging.DEBUG)
@@ -58,7 +58,7 @@ class FormWrap(object):
     Returns:
       list of arguments in form.
     """
-    return self._form.keys()
+    return list(self._form.keys())
 
   def getvalue_original(self, key, default_val=None):
     """Gets original value - no sanitizing.
@@ -137,7 +137,7 @@ class FormWrap(object):
     # in Client! It may be not safe since FormWrap is a generic class.
 
     # Un-escape first.
-    path_res = urllib.unquote(path)
+    path_res = urllib.parse.unquote(path)
 
     # Normalize path.
     path_res = self._normalize_path(path_res)

@@ -19,11 +19,11 @@
 #include <Qt/qmessagebox.h>
 #include <Qt/q3textedit.h>
 #include <Qt/q3listbox.h>
-#include <Qt/qstringlist.h>
+#include <QtCore/qstringlist.h>
 #include <Qt/qpushbutton.h>
 #include <Qt/q3buttongroup.h>
 #include <Qt/q3progressdialog.h>
-#include <Qt/qapplication.h>
+#include <QtWidgets/qapplication.h>
 #include <Qt/q3button.h>
 #include "ScriptEditor.h"
 #include <gstFormat.h>

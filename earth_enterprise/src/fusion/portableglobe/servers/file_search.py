@@ -19,7 +19,7 @@ import os
 import re
 
 # Beginning template for search results.
-kml_start_template = """<?xml version="1.0" encoding="latin1"?>
+kml_start_template = """<?xml version="1.0" encoding="toLatin1().data()"?>
 <kml xmlns="http://earth.google.com/kml/2.1">
     <Folder>
         <name><![CDATA[Grouped search results : %s]]></name>
@@ -190,8 +190,8 @@ class FileDatabase(object):
           if idx < len(row):
             summary += "<br><b>%s:</b> %s" % (column_name, row[idx])
           else:
-            print "Bad search row. Too few columns."
-            print row
+            print("Bad search row. Too few columns.")
+            print(row)
           idx += 1
         if num_found:
           content += delimiter
@@ -240,7 +240,7 @@ class FileDatabase(object):
     """Search all tables and return resuls as json."""
     m = latlon_regex.match(search_term)
     if m:
-      print "lat/lon"
+      print("lat/lon")
       return self.Location(m.group(1), m.group(2),
                            (json_start_template % cb) % search_term,
                            json_end_template, self.json_placemark_)

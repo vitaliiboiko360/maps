@@ -23,12 +23,12 @@ import shlex
 import subprocess
 import sys
 import time
-import urlparse
+import urllib.parse
 import xml.sax.saxutils as saxutils
 import distutils.dir_util
 import distutils.errors
 
-import errors
+from . import errors
 
 BYTES_PER_MEGABYTE = 1024.0 * 1024.0
 NAME_TEMPLATE = "%s_%s"
@@ -143,17 +143,17 @@ def GlobesToText(globes, template, sort_item, reverse=False, is_text=False):
   result = []
   # If it is text, sort the lower case version of the text.
   if is_text:
-    items = sorted(globes.iteritems(),
+    items = sorted(iter(globes.items()),
                    key=lambda globe_pair: globe_pair[1][sort_item].lower(),
                    reverse=reverse)
   # If it is NOT text, use default less than comparison.
   else:
-    items = sorted(globes.iteritems(),
+    items = sorted(iter(globes.items()),
                    key=lambda globe_pair: globe_pair[1][sort_item],
                    reverse=reverse)
   for [unused_key, globe] in iter(items):
     next_entry = template
-    for [globe_term, globe_value] in globe.iteritems():
+    for [globe_term, globe_value] in globe.items():
       replace_item = "[$%s]" % globe_term.upper()
       if globe_term == "globe" or globe_term == "info_loaded":
         pass
@@ -172,7 +172,7 @@ def GlobeNameReplaceParams(globe_name):
 
 def ReplaceParams(text, replace_params):
   """Replace keys with values in the given text."""
-  for (key, value) in replace_params.iteritems():
+  for (key, value) in replace_params.items():
     text = text.replace(key, value)
   return text
 
@@ -182,7 +182,7 @@ def OutputFile(file_name, replace_params):
   fp = open(file_name)
   text = fp.read()
   fp.close()
-  print ReplaceParams(text, replace_params)
+  print(ReplaceParams(text, replace_params))
 
 
 def CreateInfoFile(path, description):
@@ -201,7 +201,7 @@ def CreateFile(path, content):
     fp.write(content)
     fp.close()
   except IOError as error:
-    print error
+    print(error)
     sys.exit(1)
 
 
@@ -219,7 +219,7 @@ def ConvertToQtNode(level, col, row):
   """Converts col, row, and level to corresponding qtnode string."""
   qtnode = "0"
   half_ndim = 1 << (level - 1)
-  for unused_ in xrange(level):
+  for unused_ in range(level):
     if row >= half_ndim and col < half_ndim:
       qtnode += "0"
       row -= half_ndim
@@ -249,7 +249,7 @@ def JsBoolString(bool_value):
 def WriteHeader(content_type="text/html"):
   """Output header for web page."""
   # Pick up one print from the Python print.
-  print "Content-Type: %s\n" % content_type
+  print("Content-Type: %s\n" % content_type)
 
 
 def ExecuteCmd(os_cmd, logger, dry_run=False):
@@ -285,7 +285,7 @@ def ExecuteCmd(os_cmd, logger, dry_run=False):
       raise OsCommandError()
     else:
       PrintAndLog("SUCCESS", logger, None)
-  except Exception, e:
+  except Exception as e:
     PrintAndLog("FAILED: %s" % e.__str__(), logger)
     raise OsCommandError()
 
@@ -308,7 +308,7 @@ def ExecuteCmdInBackground(os_cmd, logger):
     subprocess.Popen(os_cmd + " &", shell=True,
                      stdout=subprocess.PIPE,
                      stderr=subprocess.PIPE)
-  except Exception, e:
+  except Exception as e:
     PrintAndLog("FAILED: %s" % e.__str__(), logger)
     raise OsCommandError()
 
@@ -342,16 +342,16 @@ def RunCmd(os_cmd):
       return ["", results]
     else:
       return results.split("\n")
-  except Exception, e:
+  except Exception as e:
     # print "FAILURE: %s" % e.__str__()
     return ["", e.__str__()]
 
 
 def PrintAndLog(msg, logger=None, prefix="\n"):
   if prefix:
-    print "%s%s" % (prefix, msg)
+    print("%s%s" % (prefix, msg))
   else:
-    print msg
+    print(msg)
 
   if logger:
     logger.Log(msg)
@@ -411,7 +411,7 @@ def GetServerAndPathFromUrl(url):
   """
   server = ""
   path = ""
-  url_obj = urlparse.urlparse(url)
+  url_obj = urllib.parse.urlparse(url)
   if url_obj.scheme and url_obj.netloc and url_obj.path:
     server = "{0}://{1}".format(url_obj.scheme, url_obj.netloc)
     path = url_obj.path

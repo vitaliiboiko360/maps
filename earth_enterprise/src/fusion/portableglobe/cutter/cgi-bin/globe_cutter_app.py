@@ -31,8 +31,8 @@ import shutil
 import sys
 import time
 import ssl
-import urllib
-import urllib2
+import urllib.request, urllib.parse, urllib.error
+import urllib.request, urllib.error, urllib.parse
 from contextlib import closing
 
 import defusedxml.ElementTree as etree
@@ -155,7 +155,7 @@ class GlobeBuilder(object):
       column_names[-1] = "lon"
       column_names.append("lat")
       fix_geom = True
-    print "\t".join(column_names)
+    print("\t".join(column_names))
 
     # Write out each row of data.
     # Convert POINT() data to a lat and lon column.
@@ -165,20 +165,20 @@ class GlobeBuilder(object):
         point = row[-1]
         lonlat = point[6:-1].split(" ")
         out_row.extend(lonlat)
-        print "\t".join(out_row)
+        print("\t".join(out_row))
       else:
-        print "\t".join(row)
+        print("\t".join(row))
 
   @staticmethod
   def Status(message):
     """Outputs a status message."""
-    print "<br>%s" % common.utils.HtmlEscape(message)
+    print("<br>%s" % common.utils.HtmlEscape(message))
 
   @staticmethod
   def StatusWarning(message):
     """Outputs a status message."""
-    print ("<br><span class='text_status_warn'>%s</span>" %
-           common.utils.HtmlEscape(message))
+    print(("<br><span class='text_status_warn'>%s</span>" %
+           common.utils.HtmlEscape(message)))
 
   def AddGlobeDirectory(self, description):
     """Add directory where globe will be built."""
@@ -371,7 +371,7 @@ class GlobeBuilder(object):
       # TODO: When Python 2.7 is used on Centos6, this if version<=2.6 block can be removed
       # and the 'else' ssl.SSLContext based block can be used instead.
       if sys.version_info[0] == 2 and sys.version_info[1] <= 6:
-        with closing(urllib2.urlopen(url)) as fp:
+        with closing(urllib.request.urlopen(url)) as fp:
           http_status_code = fp.getcode()
           response_data = fp.read()
       else:
@@ -385,7 +385,7 @@ class GlobeBuilder(object):
           context = ssl.create_default_context()
           context.check_hostname = False
           context.verify_mode = ssl.CERT_NONE
-        with closing(urllib2.urlopen(url, context=context)) as fp:
+        with closing(urllib.request.urlopen(url, context=context)) as fp:
           http_status_code = fp.getcode()
           response_data = fp.read()
 
@@ -463,7 +463,7 @@ class GlobeBuilder(object):
           is_altered = True
 
     if not is_altered:
-      print "Json has not been altered."
+      print("Json has not been altered.")
 
     # Write modified JSON to portable server file.
     fp = open(json_file, "w")
@@ -486,7 +486,7 @@ class GlobeBuilder(object):
                              json, 0):
       icons[match.groups()[0]] = True
 
-    for icon in icons.iterkeys():
+    for icon in icons.keys():
       # Get JSON from the server.
       url = "%s/query?request=Icon&icon_path=icons/%s" % (source, icon)
       try:
@@ -553,7 +553,7 @@ class GlobeBuilder(object):
       # Quote polygon parameter for URI.
       polygon_quoted = ""
       if polygon:
-        polygon_quoted = urllib.quote(polygon)
+        polygon_quoted = urllib.parse.quote(polygon)
 
       poi_ids = poi_list.split(" ")
       for poi_id in poi_ids:
@@ -657,7 +657,7 @@ class GlobeBuilder(object):
     else:
       poi_id = []
 
-    print " ".join(map(str, poi_id))
+    print(" ".join(map(str, poi_id)))
 
   def PackageGlobeForDownload(self, make_copy, is_map=False):
     """Packages globe or map as a single-file globe."""
@@ -717,12 +717,12 @@ class GlobeBuilder(object):
       else:
         shutil.rmtree(self.globe_env_dir)
         self.Status("Deleting tmp directory as: %s" % self.globe_env_dir)
-    except Exception, e:
+    except Exception as e:
       self.StatusWarning("Error: %s" % str(e))
 
   def CutProcesses(self):
     """Returns processes referencing the temp directory of a cut in progress."""
-    print "ps -ef | grep \"%s\" | grep -v grep" % self.globe_dir
+    print("ps -ef | grep \"%s\" | grep -v grep" % self.globe_dir)
     procs = os.popen("ps -ef | grep \"%s\" | grep -v grep" % self.globe_dir)
     procs_info = []
     for proc in procs:
@@ -733,7 +733,7 @@ class GlobeBuilder(object):
   def CancelCut(self, save_temp):
     """Kill processes referencing the temp directory of a cut in progress."""
     for proc_info in self.CutProcesses():
-      print "Killing: (%d) %s " % (proc_info[0], proc_info[1])
+      print("Killing: (%d) %s " % (proc_info[0], proc_info[1]))
       os.kill(proc_info[0], 1)
     self.CleanUp(save_temp)
 
@@ -755,19 +755,19 @@ class GlobeBuilder(object):
     os_cmd = ("%s/geserveradmin --publisheddbs") % COMMAND_DIR
     vss_regex = re.compile("\s*Virtual\s+Server:\s*(.*)$")
     fp = os.popen(os_cmd)
-    print "["
+    print("[")
     server_entries = []
     for line in fp:
       match = vss_regex.match(line)
-      if match and match.group(1) in servers.keys():
+      if match and match.group(1) in list(servers.keys()):
         server = "{"
         server += '"name": "%s", ' % match.group(1)
         server += '"url": "%s", ' % servers[match.group(1)][0]
         server += '"is_2d": %s' % servers[match.group(1)][1]
         server += "}"
         server_entries.append(server)
-    print ",\n".join(server_entries)
-    print "]"
+    print(",\n".join(server_entries))
+    print("]")
     fp.close()
 
   def GetDirectorySize(self):
@@ -827,7 +827,7 @@ class GlobeBuilder(object):
         self.metadata_file = METADATA_FILE_TEMPLATE % (value, uid, value)
         self.logger = common.utils.Log(LOG_FILE % (value, uid))
 
-        form_keys = form_.keys()
+        form_keys = list(form_.keys())
         if PORTABLE_PREFIX_PARAM in form_keys:
           self.portable_prefix = form_.getvalue(PORTABLE_PREFIX_PARAM)
         else:
@@ -972,14 +972,14 @@ if __name__ == "__main__":
       globe_name = FORM.getvalue_filename("globe_name")
       is_2d = FORM.getvalue("is_2d")
       if is_2d == "t":
-        print ("<hr>Your map is available at <a href=\"%s/%s.glm\">%s</a>." %
-               (WEB_URL_BASE, globe_name, globe_name))
+        print(("<hr>Your map is available at <a href=\"%s/%s.glm\">%s</a>." %
+               (WEB_URL_BASE, globe_name, globe_name)))
         globe_size = common.utils.FileSizeAsString(globe_builder.map_file)
       else:
-        print ("<hr>Your globe is available at <a href=\"%s/%s.glb\">%s</a>." %
-               (WEB_URL_BASE, globe_name, globe_name))
+        print(("<hr>Your globe is available at <a href=\"%s/%s.glb\">%s</a>." %
+               (WEB_URL_BASE, globe_name, globe_name)))
         globe_size = common.utils.FileSizeAsString(globe_builder.globe_file)
-      print "<br> Size: %s" % globe_size
+      print("<br> Size: %s" % globe_size)
       globe_builder.AppendInfoFile(globe_size)
       msg = ""
 
@@ -1018,7 +1018,7 @@ if __name__ == "__main__":
       msg = ""
 
     elif cgi_cmd == "PING":
-      print "Ready to cut."
+      print("Ready to cut.")
 
     elif cgi_cmd == "BUILD_SIZE":
       globe_builder.CheckArgs(["globe_name"], FORM)
@@ -1056,7 +1056,7 @@ if __name__ == "__main__":
                                   packet_info.__str__())
 
     elif cgi_cmd == "ECHO":
-      print FORM.getvalue("echo")
+      print(FORM.getvalue("echo"))
 
     else:
       GlobeBuilder.StatusWarning("FAILED: Unknown command: %s" % cgi_cmd)
@@ -1079,4 +1079,4 @@ if __name__ == "__main__":
       GlobeBuilder.StatusWarning(
           "WARNING: %4.1f MB of disk space remaining." % disk_space)
 
-  print msg
+  print(msg)

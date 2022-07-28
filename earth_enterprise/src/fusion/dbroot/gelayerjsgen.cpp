@@ -155,9 +155,9 @@ void EmitImageryLayer(FILE* fp, const LegendLocale &legend_locale,
   fprintf(fp, "tile_layer_defs.push(\n");
   fprintf(fp, "{\n");
   fprintf(fp, "  img: stream_url + \"/query?request=Icon&icon_path=%s\",\n",
-          (const char *)icon_name.utf8());
+          (const char *)icon_name.toUtf8());
   fprintf(fp, "  txt: \"%s\",\n",
-          (const char *)legend_locale.name.GetValue().utf8());
+          (const char *)legend_locale.name.GetValue().toUtf8());
   fprintf(fp, "  initial_state: %s,\n",
           legend_locale.isChecked.GetValue() ? "true" : "false");
   fprintf(fp, "  opacity: 1.0,\n");
@@ -184,9 +184,9 @@ void EmitVectorRasterLayer(FILE* fp, const LegendLocale &legend_locale,
   fprintf(fp, "tile_layer_defs.push(\n");
   fprintf(fp, "{\n");
   fprintf(fp, "  img: stream_url + \"/query?request=Icon&icon_path=%s\",\n",
-          (const char *)icon_name.utf8());
+          (const char *)icon_name.toUtf8());
   fprintf(fp, "  txt: \"%s\",\n",
-          (const char *)legend_locale.name.GetValue().utf8());
+          (const char *)legend_locale.name.GetValue().toUtf8());
   fprintf(fp, "  initial_state: %s,\n",
           legend_locale.isChecked.GetValue() ? "true" : "false");
   fprintf(fp, "  opacity: 1.0,\n");
@@ -210,7 +210,7 @@ void EmitLayersJSFile(const MapLayerJSConfig &config,
 {
   // open the file for writing
   std::string outfile =
-    khComposePath(outdir, kLayerDefsPrefix + "." + locale.latin1());
+    khComposePath(outdir, kLayerDefsPrefix + "." + locale.toLatin1().data());
   FILE* fp = ::fopen(outfile.c_str(), "w");
   if (!fp) {
     throw khErrnoException(kh::tr("Unable to open %1 for writing")

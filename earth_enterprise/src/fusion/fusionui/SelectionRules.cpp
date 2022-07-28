@@ -28,7 +28,7 @@
 #include <Qt/qcombobox.h>
 #include <Qt/qlineedit.h>
 #include <Qt/qpushbutton.h>
-#include <Qt/qstringlist.h>
+#include <QtCore/qstringlist.h>
 #include <Qt/qcolordialog.h>
 #include <Qt/qcheckbox.h>
 #include <Qt/qlabel.h>
@@ -39,7 +39,7 @@
 #include <Qt/qvalidator.h>
 #include <Qt/qtabwidget.h>
 #include <Qt/q3widgetstack.h>
-#include <Qt/qimage.h>
+#include <QtGui/qimage.h>
 #include <Qt/q3dragobject.h>
 #include <Qt/qbuttongroup.h>
 #include <common/khTileAddrConsts.h>

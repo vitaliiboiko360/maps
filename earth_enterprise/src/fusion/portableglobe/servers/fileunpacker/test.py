@@ -47,7 +47,7 @@ class Unpacker(object):
     Returns:
       Data from last found packet or file.
     """
-    offset = 0L + (self.data_loc_.HighOffset() & 0xffffffff) << 32
+    offset = 0 + (self.data_loc_.HighOffset() & 0xffffffff) << 32
     offset += (self.data_loc_.LowOffset() & 0xffffffff)
     size = self.data_loc_.LowSize()
 
@@ -185,10 +185,10 @@ def RunTest(tally, test, unpacker):
     if test(unpacker):
       tally[0] += 1
     else:
-      print "FAIL:", test.func_name
+      print("FAIL:", test.__name__)
       tally[1] += 1
   except UnpackerError:
-    print "FAIL Unpacker Exception:", test.func_name
+    print("FAIL Unpacker Exception:", test.__name__)
     tally[1] += 1
 
 
@@ -256,12 +256,12 @@ def TestGlcFiles(unpacker):
   """Test globe file is same as gold standard."""
   if (unpacker.ReadFile("earth/info.txt") !=
       ReadGoldStandard("gold_glc_info.txt")):
-    print "Did not match: earth/info.txt"
+    print("Did not match: earth/info.txt")
     return False
 
   if (unpacker.ReadFile("earth/layer_info.txt") !=
       ReadGoldStandard("gold_glc_layer_info.txt")):
-    print "Did not match: earth/info.txt"
+    print("Did not match: earth/info.txt")
     return False
 
   return True
@@ -380,10 +380,10 @@ def main():
   Run3dTests(tally)
   Run2dTests(tally)
   if tally[1] == 0:
-    print "SUCCESS:",
+    print("SUCCESS:", end=' ')
   else:
-    print "FAIL:",
+    print("FAIL:", end=' ')
 
-  print "%d tests passed. %d tests failed." % (tally[0], tally[1])
+  print("%d tests passed. %d tests failed." % (tally[0], tally[1]))
 if __name__ == "__main__":
   main()

@@ -19,8 +19,8 @@
 #define KHSRC_FUSION_FUSIONUI_ASSETICONVIEW_H__
 
 #include <Qt/q3iconview.h>
-#include <Qt/qimage.h>
-#include <Qt/qdir.h>
+#include <QtGui/qimage.h>
+#include <QtCore/qdir.h>
 #include <gstAssetGroup.h>
 #include <Qt/qnamespace.h>
 #include <Qt/q3listview.h>

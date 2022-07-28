@@ -41,7 +41,7 @@ class TestOS(unittest.TestCase):
 
     error_msg = ('The Linux distribution "%s" is not supported. These are the '
                  'supported distributions: %s.'
-                 % (distro, ', '.join(common.SUPPORTED_OS_LIST.keys())))
+                 % (distro, ', '.join(list(common.SUPPORTED_OS_LIST.keys()))))
     self.assertIn(distro, common.SUPPORTED_OS_LIST, msg=error_msg)
 
     if not(release >= common.SUPPORTED_OS_LIST[distro]['min_release'] and

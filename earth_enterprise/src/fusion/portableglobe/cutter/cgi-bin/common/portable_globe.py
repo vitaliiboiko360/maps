@@ -22,7 +22,7 @@ Adapted from module of same name used in Portable Server.
 import os
 import re
 
-import portable_exceptions
+from . import portable_exceptions
 import glc_unpacker
 
 NON_COMPOSITE_LAYER = 0
@@ -110,13 +110,13 @@ class Globe(object):
     if glm_layer_id in self.is_base_layer_:
       return self.is_base_layer_[glm_layer_id]
 
-    print "Unknown layer (IsBaseLayer)."
+    print("Unknown layer (IsBaseLayer).")
     return False
 
   def _GetData(self):
     """Returns package or file content currently pointed to by unpacker."""
     assert self.unpacker_
-    offset = 0L + (self.file_loc_.HighOffset() & 0xffffffff) << 32
+    offset = 0 + (self.file_loc_.HighOffset() & 0xffffffff) << 32
     offset += (self.file_loc_.LowOffset() & 0xffffffff)
     fp = open(self.GlobePath(), "rb")
     fp.seek(offset)
@@ -128,7 +128,7 @@ class Globe(object):
 
   def GetVersion(self):
     """Returns format version of the globe."""
-    offset = (0L + os.path.getsize(self.GlobePath())
+    offset = (0 + os.path.getsize(self.GlobePath())
               - glc_unpacker.Package.kVersionOffset)
     fp = open(self.GlobePath(), "rb")
     fp.seek(offset)
@@ -138,7 +138,7 @@ class Globe(object):
 
   def GetCrc(self):
     """Returns crc of the globe."""
-    offset = (0L + os.path.getsize(self.GlobePath())
+    offset = (0 + os.path.getsize(self.GlobePath())
               - glc_unpacker.Package.kCrcOffset)
     fp = open(self.GlobePath(), "rb")
     fp.seek(offset)
@@ -155,8 +155,8 @@ class Globe(object):
     fp = open(self.GlobePath(), "rb")
 
     crc = [0, 0, 0, 0]
-    for unused_i in xrange(size):
-      for j in xrange(glc_unpacker.Package.kCrcSize):
+    for unused_i in range(size):
+      for j in range(glc_unpacker.Package.kCrcSize):
         ch = fp.read(1)
         crc[j] ^= ord(ch)
 
@@ -260,13 +260,13 @@ class Globe(object):
 
     if self.unpacker_.FindLayerFile(path, layer_id, self.file_loc_):
       data = self._GetData()
-      print "path dbroot: ", path, len(data)
+      print("path dbroot: ", path, len(data))
       return data
     elif self.unpacker_.FindQtpPacket(
         "0", glc_unpacker.kDbRootPacket, 0, layer_id, self.file_loc_):
       return self._GetData()
     else:
-      print "Did not find dbRoot for: ", layer_id
+      print("Did not find dbRoot for: ", layer_id)
       raise portable_exceptions.UnableToFindException("Unable to find dbroot.")
 
   def ReadDataPacket(self, qtpath, packet_type, channel, layer_id):

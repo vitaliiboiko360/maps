@@ -280,8 +280,8 @@ void EmitSearchFileHeader(FILE *search_file_, const POIConfig &config) {
   for (unsigned int i = 0; i < config.search_fields_.size(); ++i) {
     fprintf(search_file_,
         "<field name=\"%s\" displayname=\"%s\" type=\"VARCHAR\" use=\"%s\"/>\n",
-        QString("field%1").arg(i).latin1(),
-        (const char*) config.search_fields_[i].name.utf8(),
+        QString("field%1").arg(i).toLatin1().data(),
+        (const char*) config.search_fields_[i].name.toUtf8(),
         SearchField::UseTypeToSearchString(config.search_fields_[i].use_type));
   }
   fprintf(search_file_, "</SearchTableSchema>\n");
@@ -335,7 +335,7 @@ void EmitSearchRecord(gstSource &src, std::int32_t fid, FILE *search_file_,
     if (!val) {
       throw khException(kh::tr("No field named %1").arg(search_fields[i].name));
     }
-    fprintf(search_file_, "%s\t", (const char *) val->ValueAsUnicode().utf8());
+    fprintf(search_file_, "%s\t", (const char *) val->ValueAsUnicode().toUtf8());
   }
 
   char lon_buffer[static_cast<int>(sizeof(double) * 2 + 1)];

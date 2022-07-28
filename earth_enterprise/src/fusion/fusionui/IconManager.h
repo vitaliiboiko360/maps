@@ -20,7 +20,7 @@
 
 #include <Qt/qfiledialog.h>
 #include <Qt/q3scrollview.h>
-#include <Qt/qpixmap.h>
+#include <QtGui/qpixmap.h>
 #include <Qt3Support/Q3FilePreview>
 #include "iconmanagerbase.h"
 

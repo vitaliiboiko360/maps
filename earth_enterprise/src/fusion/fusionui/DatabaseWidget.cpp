@@ -69,21 +69,21 @@ void DatabaseWidget::Prefill(const DatabaseEditRequest& request) {
 void DatabaseWidget::AssembleEditRequest(DatabaseEditRequest* request) {
   if (vector_project_label->text() != empty_text) {
     request->config.vectorProject =
-        vector_project_label->text().latin1() + kVectorProjectSuffix;
+        vector_project_label->text().toLatin1().data() + kVectorProjectSuffix;
   } else {
     request->config.vectorProject = std::string();
   }
 
   if (imagery_project_label->text() != empty_text) {
     request->config.imageryProject =
-        imagery_project_label->text().latin1() + kImageryProjectSuffix;
+        imagery_project_label->text().toLatin1().data() + kImageryProjectSuffix;
   } else {
     request->config.imageryProject = std::string();
   }
 
   if (terrain_project_label->text() != empty_text) {
     request->config.terrainProject =
-        terrain_project_label->text().latin1() + kTerrainProjectSuffix;
+        terrain_project_label->text().toLatin1().data() + kTerrainProjectSuffix;
   } else {
     request->config.terrainProject = std::string();
   }

@@ -16,7 +16,7 @@
 
 #include "TextRenderer.h"
 #include <Qt/q3cstring.h>
-#include <qimage.h>
+#include <QtGui/qimage.h>
 #include <SkFontHost.h>
 #include "fusion/gst/maprender/SGLHelps.h"
 #include <khSimpleException.h>
@@ -49,7 +49,7 @@ TextRenderer::TextRenderer(const MapTextStyleConfig &config,
   SkTypeface *typeface = FontInfo::GetTypeFace(config.font.toUtf8().constData(), typestyle);
   if (typeface == NULL) {
     throw khSimpleException("Typeface not found for map tile rendering: ")
-        << config.font.utf8()
+        << config.font.toUtf8()
         << ((config.weight & SkTypeface::kBold) ? "-Bold" : "")
         << ((config.weight & SkTypeface::kItalic) ? "-Italic" : "");
   }
@@ -80,11 +80,11 @@ void
 TextRenderer::DrawText(SkCanvas &canvas, const QString &text,
                        SkScalar x, SkScalar y) const
 {
-  QCString utf8 = text.utf8();
+  QCString toUtf8() = text.toUtf8();
   if (drawOutline) {
-    canvas.drawText(utf8, utf8.length(), x, y, outlinePaint);
+    canvas.drawText(toUtf8(), toUtf8().length(), x, y, outlinePaint);
   }
-  canvas.drawText(utf8, utf8.length(), x, y, normalPaint);
+  canvas.drawText(toUtf8(), toUtf8().length(), x, y, normalPaint);
 }
 
 void
@@ -94,17 +94,17 @@ TextRenderer::DrawTextOnPath(SkCanvas &canvas,
                              SkScalar horiz_offset,
                              SkScalar vert_offset) const
 {
-  QCString utf8 = text.utf8();
+  QCString toUtf8() = text.toUtf8();
   if (drawOutline) {
-    canvas.drawTextOnPathHV(utf8.data(),
-                          utf8.length(),
+    canvas.drawTextOnPathHV(toUtf8().data(),
+                          toUtf8().length(),
                           path,
                           horiz_offset,
                           vert_offset,
                           outlinePaint);
   }
-  canvas.drawTextOnPathHV(utf8.data(),
-                        utf8.length(),
+  canvas.drawTextOnPathHV(toUtf8().data(),
+                        toUtf8().length(),
                         path,
                         horiz_offset,
                         vert_offset,
@@ -115,11 +115,11 @@ SkScalar
 TextRenderer::MeasureText(const QString &text,
                           SkScalar* above, SkScalar* below) const
 {
-  QCString utf8 = text.utf8();
+  QCString toUtf8() = text.toUtf8();
   SkRect bounds;
   const SkScalar retVal = drawOutline
-      ? outlinePaint.measureText(utf8.data(), utf8.length(), &bounds)
-      : normalPaint.measureText(utf8.data(), utf8.length(), &bounds);
+      ? outlinePaint.measureText(toUtf8().data(), toUtf8().length(), &bounds)
+      : normalPaint.measureText(toUtf8().data(), toUtf8().length(), &bounds);
   *above = bounds.fTop;
   *below = bounds.fBottom;
   return retVal;

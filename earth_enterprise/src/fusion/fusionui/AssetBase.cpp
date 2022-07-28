@@ -15,19 +15,19 @@
 
 #include <Qt/qaction.h>
 #include <Qt/qframe.h>
-#include <Qt/qimage.h>
+#include <QtGui/qimage.h>
 #include <Qt/qlabel.h>
 #include <Qt/qlayout.h>
 #include <Qt/qmenubar.h>
 #include <Qt/qmessagebox.h>
-#include <Qt/qpixmap.h>
+#include <QtGui/qpixmap.h>
 #include <Qt/qpushbutton.h>
 #include <Qt/qtooltip.h>
 #include <Qt/qvariant.h>
 #include <Qt/qwhatsthis.h>
 #include <khException.h>
-#include <Qt/qobject.h>
-#include <Qt/qmainwindow.h>
+#include <QtCore/qobject.h>
+#include <QtWidgets/qmainwindow.h>
 #include <Qt/qwidget.h>
 #include "AssetBase.h"
 #include "AssetChooser.h"
@@ -339,7 +339,7 @@ void AssetBase::Build(void) {
 
   QString error;
   bool needed = false;;
-  bool success = khAssetManagerProxy::BuildAsset((const char*)Name().utf8(),
+  bool success = khAssetManagerProxy::BuildAsset((const char*)Name().toUtf8(),
                                                  needed, error);
   AssetManager::self->selectFolder();
   AssetManager::self->refresh();

@@ -20,7 +20,7 @@
 
 #include <Qt/qobjectdefs.h>
 #include <Qt/q3filedialog.h>
-#include <Qt/qstringlist.h>
+#include <QtCore/qstringlist.h>
 #include <Qt/qcheckbox.h>
 #include <fusionui/.idl/filehistory.h>
 

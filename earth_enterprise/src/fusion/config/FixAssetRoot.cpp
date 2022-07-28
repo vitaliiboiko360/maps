@@ -112,7 +112,7 @@ void PromptUserAndFixOwnership(const std::string &assetroot, bool noprompt) {
 
   if (!noprompt) {
     // confirm with user that it's OK to chown
-    fprintf(stderr, "%s", (const char *)msg.utf8());
+    fprintf(stderr, "%s", (const char *)msg.toUtf8());
     if (!geprompt::confirm(kh::tr("Proceed with chown"), 'Y')) {
       throw khException(kh::tr("Aborted by user"));
     }

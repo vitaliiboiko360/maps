@@ -15,7 +15,7 @@
 
 
 #include <string>
-#include <Qt/qstring.h>
+#include <Qt/QtCore/qstring.h>
 #include <vector>
 #include <map>
 

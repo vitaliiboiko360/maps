@@ -43,10 +43,10 @@
 
 #include <set>
 
-#include <qurl.h>
-#include <qstring.h>
-#include <qdir.h>
-#include <qstringlist.h>
+#include <QtCore/qurl.h>
+#include <QtCore/qstring.h>
+#include <QtCore/qdir.h>
+#include <QtCore/qstringlist.h>
 
 #include "fusion/autoingest/JsonUtils.h"
 #include "fusion/autoingest/.idl/storage/MapLayerJSConfig.h"
@@ -892,7 +892,7 @@ void DbManifest::GetGEJsonFiles(const std::string& stream_url,
     // Create the JSON buffer for the database and this locale.
     std::string json_text = JsonUtils::GEJsonBuffer(stream_url,
                                                     qurl.host().toUtf8().constData(),
-                                                    qurl.protocol().toUtf8().constData(),
+                                                    qurl.scheme().toUtf8().constData(),
                                                     raster_layers,
                                                     vector_layers,
                                                     locale);
@@ -970,7 +970,7 @@ void DbManifest::GetMapsJsonFiles(
     // Create the JSON buffer for the database and this locale.
     std::string json_text = JsonUtils::MapsJsonBuffer(stream_url,
                                                       qurl.host().toUtf8().constData(),
-                                                      qurl.protocol().toUtf8().constData(),
+                                                      qurl.scheme().toUtf8().constData(),
                                                       layers,
                                                       fusion_config_,
                                                       locale);

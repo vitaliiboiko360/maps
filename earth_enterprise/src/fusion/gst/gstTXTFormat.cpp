@@ -20,7 +20,7 @@
 #include <gstTXTTable.h>
 #include <gstRecord.h>
 #include <qfile.h>
-#include <qstringlist.h>
+#include <QtCore/qstringlist.h>
 #include <khFileUtils.h>
 
 gstTXTFormat::gstTXTFormat(const char *n)
@@ -69,14 +69,14 @@ bool gstTXTFormat::DiscoverLayout(const char* fname,
   bool have_lon = false;
   for (QStringList::Iterator it = fields.begin();
        it != fields.end(); ++it, ++pos) {
-    QString field = (*it).stripWhiteSpace();
+    QString field = (*it).trimmed();
     gstRegistry::Group* grp = field_defs->addGroup(
-        QString("%1").arg(pos).latin1());
+        QString("%1").arg(pos).toLatin1().data());
     if (field.isEmpty()) {
       notify(NFY_WARN, "Empty column name found. Replacing with (null)");
       field = "(null)";
     }
-    grp->addTag(new gstValue(field.latin1()))->SetName("Name");
+    grp->addTag(new gstValue(field.toLatin1().data()))->SetName("Name");
 
     QString lower = field.lower();
     if (!have_lat && (lower == "dlat" || lower == "latitude" ||
@@ -235,7 +235,7 @@ gstStatus gstTXTFormat::OpenFile() {
 
   if (getNotifyLevel() >= NFY_DEBUG) {
     for (unsigned int ii = 0; ii < table_->NumColumns(); ++ii)
-      fprintf(stderr, "\t[%d] %s\n", ii, table_->GetHeader()->Name(ii).latin1());
+      fprintf(stderr, "\t[%d] %s\n", ii, table_->GetHeader()->Name(ii).toLatin1().data());
   }
 
   AddLayer(gstPoint, table_->NumRows(), table_->GetHeader());

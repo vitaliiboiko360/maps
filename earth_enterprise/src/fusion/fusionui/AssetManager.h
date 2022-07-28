@@ -26,7 +26,7 @@
 #include <Qt/qobjectdefs.h>
 #include <Qt/q3iconview.h>
 using QIconViewItem = Q3IconViewItem;
-#include <Qt/qstringlist.h>
+#include <QtCore/qstringlist.h>
 #include <Qt/qaction.h>
 #include <Qt/qthread.h>
 #include <Qt/qtimer.h>
@@ -34,7 +34,7 @@ using QIconViewItem = Q3IconViewItem;
 using QPopupMenu = Q3PopupMenu;
 #include <Qt/q3listview.h>
 using QListViewItem = Q3ListViewItem;
-#include <Qt/qobject.h>
+#include <QtCore/qobject.h>
 #include "fusion/autoingest/.idl/storage/AssetDefs.h"
 #include "fusion/fusionui/.idl/layoutpersist.h"
 #include "fusion/fusionui/.ui/assetmanagerbase.h"

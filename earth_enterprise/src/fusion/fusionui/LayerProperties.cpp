@@ -20,9 +20,9 @@
 #include <Qt/qcombobox.h>
 #include <Qt/qspinbox.h>
 #include <Qt/qlabel.h>
-#include <Qt/qpixmap.h>
+#include <QtGui/qpixmap.h>
 #include <Qt/qpushbutton.h>
-#include <Qt/qimage.h>
+#include <QtGui/qimage.h>
 #include <Qt/qcheckbox.h>
 #include <Qt/q3textedit.h>
 #include <Qt/qmessagebox.h>
@@ -116,7 +116,7 @@ LayerConfig LayerProperties::GetConfig() {
   SyncToConfig();
 
   layer_config_.channelId = static_cast< unsigned int> (idSpinBox->value());
-  layer_config_.asset_uuid_ = uuidEdit->text().ascii();
+  layer_config_.asset_uuid_ = uuidEdit->text().toLatin1().data();
   layer_config_.preserveTextLevel = static_cast< unsigned int> (
       preserveTextSpin->value());
   layer_config_.isVisible = isVisibleCheck->isChecked();

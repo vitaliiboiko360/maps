@@ -15,7 +15,7 @@
 #include <string>
 #include <list>
 #include <map>
-#include <Qt/qstring.h>
+#include <Qt/QtCore/qstring.h>
 
 class FileHistoryConfig
 {

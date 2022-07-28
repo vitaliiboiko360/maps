@@ -103,7 +103,7 @@ def main():
     elif cmd == "dbroot_info":
       common.utils.WriteHeader("application/json")
       globe = common.portable_globe.Globe("%s/%s" % (GLOBE_DIR, globe_name))
-      print common.utils.GetDbrootInfoJson(globe, globe_name)
+      print(common.utils.GetDbrootInfoJson(globe, globe_name))
 
     elif cmd == "list_globe_dir":
       common.utils.WriteHeader("text/html")
@@ -112,12 +112,12 @@ def main():
           globe_dir.globes_, TABLE_ENTRY_TEMPLATE, "name")
       print ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN"
              "\"\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>")
-      print "<html><body>"
-      print "<b>List of globes in</b> <i>%s</i>:" % GLOBE_DIR
-      print "<table cellspacing=10>"
-      print content
-      print "</table>"
-      print "</body></html>"
+      print("<html><body>")
+      print("<b>List of globes in</b> <i>%s</i>:" % GLOBE_DIR)
+      print("<table cellspacing=10>")
+      print(content)
+      print("</table>")
+      print("</body></html>")
 
     elif cmd == "info":
       globe = common.portable_globe.Globe("%s/%s" % (GLOBE_DIR, globe_name))
@@ -126,26 +126,26 @@ def main():
         common.utils.WriteHeader("text/html")
         print ("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN"
                "\"\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>")
-        print "<html><body><h2>Globe info for %s</h2><pre>" % globe_name
-        print content
-        print "</pre></body></html>"
+        print("<html><body><h2>Globe info for %s</h2><pre>" % globe_name)
+        print(content)
+        print("</pre></body></html>")
       else:
         raise portable_exceptions.PortableException(
             "Corrupted glx: %s." % globe_name)
 
     elif cmd == "help":
       common.utils.WriteHeader("text/plain")
-      print params
-      print os.environ
-      print params
-      print "/".join(params[5:])
+      print(params)
+      print(os.environ)
+      print(params)
+      print("/".join(params[5:]))
 
     elif cmd == "polygon":
       globe_dir = common.globe_directory.GlobeDirectory(GLOBE_DIR, True)
       polygon = globe_dir.globes_[globe_name]["globe"].Polygon()
       common.utils.WriteHeader("text/plain")
       if polygon.find("<kml") >= 0:
-        print polygon
+        print(polygon)
 
     elif cmd == "preview":
       common.utils.WriteHeader("text/html")
@@ -170,7 +170,7 @@ def main():
       common.utils.WriteHeader("text/plain")
 
       globe_info_list = []
-      for globe_key in globe_dir.globes_.iterkeys():
+      for globe_key in globe_dir.globes_.keys():
         globe = globe_dir.globes_[globe_key]
         if globe["is_gee"]:
           globe_info_list.append(GLOBE_INFO_OBJ_TEMPLATE % (
@@ -189,18 +189,18 @@ def main():
               common.utils.JsBoolString(globe["is_gee"]),
               globe["message"]))
 
-      print "["
-      print ",\n".join(globe_info_list)
-      print "]"
+      print("[")
+      print(",\n".join(globe_info_list))
+      print("]")
 
     else:
       common.utils.WriteHeader("text/plain")
       logger.Log("Unknown command: %s" % cmd)
-      print "Unknown command:", cmd
+      print("Unknown command:", cmd)
 
-  except Exception, e:
+  except Exception as e:
     common.utils.WriteHeader("text/html")
-    print type(e), e
+    print(type(e), e)
 
 
 if __name__ == "__main__":

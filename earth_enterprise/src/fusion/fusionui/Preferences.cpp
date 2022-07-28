@@ -18,12 +18,12 @@
 #include <Qt/qpushbutton.h>
 #include <Qt/qcheckbox.h>
 #include <Qt/qcombobox.h>
-#include <Qt/qtextcodec.h>
+#include <QtCore/qtextcodec.h>
 #include <Qt/qfileinfo.h>
 #include <Qt/qcolordialog.h>
 #include <Qt/qspinbox.h>
 #include <Qt/q3widgetstack.h>
-#include <Qt/qobject.h>
+#include <QtCore/qobject.h>
 #include <Qt/qfiledialog.h>
 #include <notify.h>
 #include <autoingest/.idl/Systemrc.h>
@@ -123,9 +123,9 @@ Preferences::Preferences(QWidget* parent)
   // gather all valid codecs from qt and insert in drop-down list
   codecCombo->insertItem(kh::tr("<none>"));
   int count = 0;
-  QTextCodec* codec;
-  for (; (codec = QTextCodec::codecForIndex(count)); ++count)
-    codecCombo->insertItem(codec->name(), 1);
+  QByteArray* codec;
+  for (codec : QTextCodec::availableCodecs())
+    codecCombo->insertItem(codec->constData(), 1);
 
   // find saved codec in list and make it current
   for (int index = 0; index < count; ++index) {

@@ -172,7 +172,7 @@ Q3FileDialog* RasterAssetWidget::FileDialog() {
     bool add_dem_file_filter = false;
 
     if (AssetType() == AssetDefs::Imagery) {
-      if (khDirExists(Preferences::DefaultImageryPath().latin1())) {
+      if (khDirExists(Preferences::DefaultImageryPath().toLatin1().data())) {
         file_dialog_->setDir(Preferences::DefaultImageryPath());
       } else {
         QMessageBox::critical(
@@ -182,7 +182,7 @@ Q3FileDialog* RasterAssetWidget::FileDialog() {
                 tr("OK"), 0, 0, 0);
       }
     } else {
-      if (khDirExists(Preferences::DefaultTerrainPath().latin1())) {
+      if (khDirExists(Preferences::DefaultTerrainPath().toLatin1().data())) {
         file_dialog_->setDir(Preferences::DefaultTerrainPath());
       } else {
         QMessageBox::critical(
@@ -652,7 +652,7 @@ void RasterAssetWidget::AssembleEditRequest(
   // only take lutfile if valid
   if (!lutfile_name_label->text().isEmpty() && lutfile_name_label->text()
       != QString("<none>"))
-    request->config.lutfile = lutfile_name_label->text().latin1();
+    request->config.lutfile = lutfile_name_label->text().toLatin1().data();
 
   // we have "<none>" at the beginning of the combo box
   if (provider_combo->currentItem() != 0) {
@@ -673,7 +673,7 @@ void RasterAssetWidget::AssembleEditRequest(
                       khErrnoException::errorString(errno));
   }
   for (int row = 0; row < source_list->numRows(); ++row) {
-    std::string filename = source_list->text(row).latin1();
+    std::string filename = source_list->text(row).toLatin1().data();
     SourceConfig::AddResult result = request->sources.AddFile(filename);
     switch (result) {
       case SourceConfig::NonVolume:
@@ -714,7 +714,7 @@ void RasterAssetWidget::AssembleEditRequest(
   std::string boundary_error;
   if (!ok_north) {
     boundary_error += "Bad double value for north '";
-    boundary_error += north_boundary->text().latin1();
+    boundary_error += north_boundary->text().toLatin1().data();
     boundary_error += "'\n";
   } else if (request->config.north_boundary < -90 ||
              request->config.north_boundary > 90    ) {
@@ -722,7 +722,7 @@ void RasterAssetWidget::AssembleEditRequest(
   }
   if (!ok_south) {
     boundary_error += "Bad double value for south '";
-    boundary_error += south_boundary->text().latin1();
+    boundary_error += south_boundary->text().toLatin1().data();
     boundary_error += "'\n";
   } else if (request->config.south_boundary < -90 ||
              request->config.south_boundary > 90    ) {
@@ -735,7 +735,7 @@ void RasterAssetWidget::AssembleEditRequest(
   const std::string::size_type boundary_error_length = boundary_error.length();
   if (!ok_east) {
     boundary_error += "Bad double value for east '";
-    boundary_error += east_boundary->text().latin1();
+    boundary_error += east_boundary->text().toLatin1().data();
     boundary_error += "'\n";
   } else if (request->config.east_boundary < -180 ||
              request->config.east_boundary > 180    ) {
@@ -743,7 +743,7 @@ void RasterAssetWidget::AssembleEditRequest(
   }
   if (!ok_west) {
     boundary_error += "Bad double value for west '";
-    boundary_error += west_boundary->text().latin1();
+    boundary_error += west_boundary->text().toLatin1().data();
     boundary_error += "'\n";
   } else if (request->config.west_boundary < -180 ||
              request->config.west_boundary > 180    ) {

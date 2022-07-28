@@ -14,8 +14,8 @@
 // limitations under the License.
 
 #include <Qt/qglobal.h>
-#include <Qt/qpixmap.h>
-#include <Qt/qimage.h>
+#include <QtGui/qpixmap.h>
+#include <QtGui/qimage.h>
 #include <gstIconManager.h>
 #include <gstFileUtils.h>
 

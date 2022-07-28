@@ -16,7 +16,7 @@
 #include <string>
 #include <vector>
 #include <deque>
-#include <qstring.h>
+#include <QtCore/qstring.h>
 #include <khstl.h>
 #include <Defaultable.h>
 #include <khMetaData.h>

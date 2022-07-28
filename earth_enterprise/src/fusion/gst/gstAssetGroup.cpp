@@ -91,7 +91,7 @@ const gstAssetFolder &gstAssetHandleImpl::getParentFolder() const {
 
 bool gstAssetHandleImpl::isValid() const {
   return (parent_folder_.isValid() &&
-          AssetDefs::HaveAssetFile(std::string(relativePath().latin1())) &&
+          AssetDefs::HaveAssetFile(std::string(relativePath().toLatin1().data())) &&
           getAsset()->type != AssetDefs::Invalid);
 }
 
@@ -168,7 +168,7 @@ std::vector<gstAssetHandle> gstAssetFolder::getAssetHandles() const {
       list.push_back(handle);
     } else {
       notify(NFY_DEBUG, "Invalid asset found! dirname=%s file=%s",
-             dir_name_.latin1(), it->latin1());
+             dir_name_.toLatin1().data(), it->toLatin1().data());
     }
   }
 
@@ -195,5 +195,5 @@ bool gstAssetFolder::newFolder(const QString& name,
   QDir dir(dir_name_);
 
   return theAssetManager->makeDir
-    (AssetDefs::FilenameToAssetPath(dir.filePath(name).latin1()), error);
+    (AssetDefs::FilenameToAssetPath(dir.filePath(name).toLatin1().data()), error);
 }

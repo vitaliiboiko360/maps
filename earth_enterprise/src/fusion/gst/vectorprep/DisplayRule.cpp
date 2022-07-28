@@ -318,7 +318,7 @@ void DisplayRuleBase::ConvertFeatureType(gstGeodeHandle &geode) {
                            " to diplay type (%2).")
                     .arg(PrettyPrimType(geode->PrimType()).c_str())
                     .arg(VectorDefs::PrettyFeatureDisplayType
-                         (featureDisplayType).ascii()));
+                         (featureDisplayType).toLatin1().data()));
 }
 
 void DisplayRuleBase::ReduceFeatures(unsigned int level, FeatureTile *tile) {

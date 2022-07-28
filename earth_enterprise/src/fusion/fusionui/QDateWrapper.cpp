@@ -18,7 +18,7 @@
 #include <string>
 #include <Qt/qlineedit.h>
 #include <Qt/qvalidator.h>
-#include <Qt/qdatetime.h>
+#include <QtCore/qdatetime.h>
 #include <common/khConstants.h>
 
 namespace qt_fusion {

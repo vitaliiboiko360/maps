@@ -17,9 +17,9 @@
 #include <Qt/q3combobox.h>
 #include <Qt/qspinbox.h>
 #include <Qt/qlabel.h>
-#include <Qt/qpixmap.h>
+#include <QtGui/qpixmap.h>
 #include <Qt/qpushbutton.h>
-#include <Qt/qimage.h>
+#include <QtGui/qimage.h>
 #include <Qt/qcheckbox.h>
 #include <Qt/qgroupbox.h>
 #include <Qt/qtabwidget.h>
@@ -89,7 +89,7 @@ LayerConfig LayerGroupProperties::GetConfig() {
   layer_config_.isExpandable = isExpandableCheck->isEnabled() &&
                                isExpandableCheck->isChecked();
   layer_config_.channelId = static_cast< unsigned int> (idSpinBox->value());
-  layer_config_.asset_uuid_ = uuidEdit->text().ascii();
+  layer_config_.asset_uuid_ = uuidEdit->text().toLatin1().data();
 
   return layer_config_;
 }

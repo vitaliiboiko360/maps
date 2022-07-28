@@ -15,7 +15,7 @@
 
 #include <Qt/qcombobox.h>
 #include <Qt/q3combobox.h>
-#include <Qt/qstringlist.h>
+#include <QtCore/qstringlist.h>
 #include <Qt/q3groupbox.h>
 #include <Qt/qlineedit.h>
 #include <Qt/q3ptrlist.h>
