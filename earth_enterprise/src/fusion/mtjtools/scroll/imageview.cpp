@@ -20,7 +20,7 @@
 #include <QtGui/qbitmap.h>
 #include <QtGui/qpainter.h>
 #include <QtWidgets/qstatusbar.h>
-#include <qcursor.h>
+#include <QtGui/qcursor.h>
 #include <QtGui/QKeyEvent>
 #include "imageview.h"
 #include "khistogram.h"

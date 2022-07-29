@@ -19,7 +19,7 @@
 #include <Qt/qcombobox.h>
 #include <Qt/q3popupmenu.h>
 #include <Qt/qpushbutton.h>
-#include <Qt/qcursor.h>
+#include <QtGui/qcursor.h>
 #include <QtCore/qstringlist.h>
 #include <QtCore/qtextcodec.h>
 #include <Qt/qlayout.h>

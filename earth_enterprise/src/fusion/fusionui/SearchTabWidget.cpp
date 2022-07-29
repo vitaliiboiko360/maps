@@ -14,7 +14,7 @@
 // limitations under the License.
 
 
-#include <Qt/qcursor.h>
+#include <QtGui/qcursor.h>
 #include <Qt/q3popupmenu.h>
 #include <Qt/qinputdialog.h>
 #include <Qt/qmessagebox.h>

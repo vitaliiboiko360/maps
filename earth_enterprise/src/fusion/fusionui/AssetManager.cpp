@@ -40,7 +40,7 @@ using QHeader = Q3Header;
 #include <Qt/qsplitter.h>
 #include <Qt/q3widgetstack.h>
 using QWidgetStack = Q3WidgetStack;
-#include <Qt/qcursor.h>
+#include <QtGui/qcursor.h>
 #include <Qt/qthread.h>
 #include <Qt/q3dragobject.h>
 using QImageDrag = Q3ImageDrag;

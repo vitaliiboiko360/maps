@@ -29,7 +29,7 @@ using QHeader = Q3Header;
 #include <Qt/qmessagebox.h>
 #include <Qt/q3popupmenu.h>
 #include <QtGui/qpainter.h>
-#include <Qt/qcursor.h>
+#include <QtGui/qcursor.h>
 
 #include <gstIconManager.h>
 #include <gstSource.h>

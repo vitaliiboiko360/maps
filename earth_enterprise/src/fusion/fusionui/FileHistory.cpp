@@ -15,7 +15,7 @@
 
 #include <algorithm>
 #include <Qt/q3popupmenu.h>
-#include <qcursor.h>
+#include <QtGui/qcursor.h>
 #include <khFileUtils.h>
 
 #include "FileHistory.h"

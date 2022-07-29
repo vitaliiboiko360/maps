@@ -19,7 +19,7 @@
 
 #include <Qt/q3table.h>
 #include <Qt/q3popupmenu.h>
-#include <Qt/qcursor.h>
+#include <QtGui/qcursor.h>
 #include <Qt/qmessagebox.h>
 #include <Qt/qfiledialog.h>
 #include <QtWidgets/qapplication.h>

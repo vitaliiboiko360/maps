@@ -16,7 +16,7 @@
 
 #include <Qt/qglobal.h>
 #include <QtCore/qobject.h>
-#include <Qt/qcursor.h>
+#include <QtGui/qcursor.h>
 #include <Qt/qtimer.h>
 #include <Qt/q3dragobject.h>
 #include <Qt/qmessagebox.h>

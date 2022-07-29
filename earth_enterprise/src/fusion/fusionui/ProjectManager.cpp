@@ -24,7 +24,7 @@
 
 #include <QtWidgets/qapplication.h>
 #include <Qt/qpushbutton.h>
-#include <Qt/qcursor.h>
+#include <QtGui/qcursor.h>
 #include <QtGui/qpainter.h>
 #include <Qt/q3popupmenu.h>
 using QPopupMenu = Q3PopupMenu;
